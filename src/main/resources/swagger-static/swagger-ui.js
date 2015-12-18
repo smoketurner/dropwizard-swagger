@@ -4601,7 +4601,12 @@ Operation.prototype.encodeQueryCollection = function (type, name, value) {
   var encoded = '';
   var i;
 
-  if (type === 'default' || type === 'multi') {
+  if (name = 'x-custom-params') {
+    for (i = 0; i < value.length; i++) {
+      if (i > 0) {encoded += '&';}
+      encoded += value[i];
+    }
+  } else if (type === 'default' || type === 'multi') {
     for (i = 0; i < value.length; i++) {
       if (i > 0) {encoded += '&';}
 
