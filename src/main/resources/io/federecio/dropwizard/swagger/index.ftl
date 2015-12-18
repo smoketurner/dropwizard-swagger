@@ -24,7 +24,7 @@
   <script type="text/javascript">
     $(function () {
       window.swaggerUi = new SwaggerUi({
-        url: "${contextPath}/swagger.json",
+        url: "../swagger.json",
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
         onComplete: function(swaggerApi, swaggerUi){
@@ -62,8 +62,32 @@
             }
         }
 
+      function addApiKeyKrakenAuthorization() {
+        var key = $('#input_apiKeyKraken')[0].value;
+        if(key && key.trim() != "") {
+            swaggerUi.api.clientAuthorizations.add("api_key", new SwaggerClient.ApiKeyAuthorization("x-auth-id", key, "header"));
+        }
+      }
+
+      function addApiSecretKrakenAuthorization() {
+        var secret = $('#input_apiSecretKraken')[0].value;
+        if(secret && secret.trim() != "") {
+            swaggerUi.api.clientAuthorizations.add("api_secret", new SwaggerClient.ApiKeyAuthorization("x-auth-key", secret, "header"));
+        }
+      }
+
+
+
       $('#input_apiKey').change(function() {
         addApiKeyAuthorization();
+      });
+
+      $('#input_apiSecretKraken').change(function() {
+        addApiSecretKrakenAuthorization();
+      });
+
+      $('#input_apiKeyKraken').change(function() {
+        addApiKeyKrakenAuthorization();
       });
 
       $('#input_authHeader').change(function() {
@@ -71,10 +95,11 @@
       });
 
       $('#input_headerSelect').change(function() {
+          $('#header_0').hide();
+          $('#header_1').hide();
+          $('#header_2').hide();
           var toShow = $( this ).val();
           $('#header_'+toShow).show();
-          var toHide = (Number(toShow)+1)%2;
-          $('#header_'+toHide).hide();
       });
       // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
       /*
@@ -98,10 +123,17 @@
           <select id="input_headerSelect">
               <option value="0">api_key</option>
               <option value="1">Auth Header</option>
+              <option value="2" selected="selected">Kraken Auth</option>
           </select>
       </div>
-      <div class='input' id="header_0"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input' id="header_0" style="display: none;"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
       <div class='input' id="header_1" style="display: none;"><input placeholder="Basic ..." id="input_authHeader" name="authHeader" type="text"/></div>
+
+      <div class='input' id="header_2">
+        <input placeholder="x-auth-id" id="input_apiKeyKraken" name="apiKeyKraken" type="text"/>
+        <input placeholder="x-auth-key" id="input_apiSecretKraken" name="apiSecretKraken" type="text"/>
+      </div>
+
       <div class='input'><a id="explore" href="#">Explore</a></div>
     </form>
   </div>

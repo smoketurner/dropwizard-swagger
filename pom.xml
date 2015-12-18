@@ -4,7 +4,7 @@
 
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>0.9.1-2-SNAPSHOT</version>
+    <version>0.9.1-2-SNAPSHOT-LIBERTY-FORKED</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
