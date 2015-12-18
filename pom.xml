@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.lgi.repos</groupId>
+        <artifactId>parent-with-repos</artifactId>
+        <version>1.4.2</version>
+    </parent>
+
+
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
     <version>0.9.1-2-SNAPSHOT-LIBERTY-FORKED</version>
@@ -30,30 +37,6 @@
             <timezone>America/New_York</timezone>
         </developer>
     </developers>
-
-    <distributionManagement>
-        <site>
-            <id>dropwizard-swagger</id>
-            <url>${project.version}</url>
-        </site>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <scm>
-        <connection>scm:git:git://github.com:smoketurner/dropwizard-swagger.git</connection>
-        <developerConnection>scm:git:git@github.com:smoketurner/dropwizard-swagger.git</developerConnection>
-        <url>http://github.com/smoketurner/dropwizard-swagger</url>
-        <tag>HEAD</tag>
-    </scm>
 
     <properties>
         <dropwizard.version>0.9.1</dropwizard.version>
@@ -543,4 +526,11 @@
             </plugin>
         </plugins>
     </reporting>
+    
+    <scm>
+        <connection>scm:git:git@github.com:LibertyGlobal/dropwizard-swagger.git</connection>
+        <url>https://github.com/LibertyGlobal/dropwizard-swagger</url>
+        <tag>HEAD</tag>
+    </scm>
+
 </project>
