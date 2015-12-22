@@ -11,7 +11,7 @@
 
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>0.9.1-2-SNAPSHOT-LGI-0.0.1-SNAPSHOT</version>
+    <version>0.9.1-2-SNAPSHOT-LGI-0.0.1</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
@@ -428,7 +428,7 @@
     <scm>
         <connection>scm:git:git@github.com:LibertyGlobal/dropwizard-swagger.git</connection>
         <url>https://github.com/LibertyGlobal/dropwizard-swagger</url>
-        <tag>HEAD</tag>
+        <tag>v0.9.1-2-SNAPSHOT-LGI-0.0.1</tag>
     </scm>
 
 </project>
