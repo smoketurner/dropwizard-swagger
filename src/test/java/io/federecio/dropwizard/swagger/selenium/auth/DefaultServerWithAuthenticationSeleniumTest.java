@@ -54,8 +54,8 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
         String token = "secret";
 
-        new Select(driver.findElement(By.id("input_headerSelect"))).selectByVisibleText("Auth Header");
-        driver.findElement(By.id("input_authHeader")).sendKeys("Bearer " + token);
+        new Select(driver.findElement(By.id("input_typeSelect"))).selectByVisibleText("Auth Header");
+        driver.findElement(By.id("input_apiKey")).sendKeys("Bearer " + token);
 
         clickOnTryOut("auth_protectedDummyEndpoint_content");
         assertResponseCodeIs("auth_protectedDummyEndpoint_content", 200);
@@ -69,7 +69,7 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
         String apiKey = "bab0d85f-00ea-4463-9ab2-d564518b120e";
 
-        new Select(driver.findElement(By.id("input_headerSelect"))).selectByVisibleText("api_key");
+        new Select(driver.findElement(By.id("input_typeSelect"))).selectByVisibleText("api_key");
         driver.findElement(By.id("input_apiKey")).sendKeys(apiKey);
 
         clickOnTryOut("auth_apiKeyDummyEndpoint_content");
