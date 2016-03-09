@@ -42,12 +42,6 @@ public class ConfigurationHelper {
     }
 
     public String getJerseyRootPath() {
-        // if the user explicitly defined a path to prefix requests use it
-        // instead of derive it
-        if (swaggerBundleConfiguration.getUriPrefix() != null) {
-            return swaggerBundleConfiguration.getUriPrefix();
-        }
-
         String rootPath;
 
         ServerFactory serverFactory = configuration.getServerFactory();
