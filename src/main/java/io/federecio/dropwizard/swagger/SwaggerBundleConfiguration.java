@@ -15,12 +15,13 @@
  */
 package io.federecio.dropwizard.swagger;
 
-import org.eclipse.jetty.util.URIUtil;
 import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
+
 import io.swagger.jaxrs.config.BeanConfig;
 
 /**
@@ -49,7 +50,7 @@ public class SwaggerBundleConfiguration {
     private String validatorUrl;
     private Boolean prettyPrint = true;
     private String host;
-    private String[] schemes = new String[]{URIUtil.HTTP};
+    private String[] schemes = new String[]{"http"};
 
     /**
      * For most of the scenarios this property is not needed.
