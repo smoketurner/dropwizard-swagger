@@ -189,7 +189,7 @@ public class SwaggerBundleConfiguration {
     public String[] getSchemes() {
       return schemes;
     }
-  
+
     @JsonProperty
     public void setSchemes(String[] schemes) {
       this.schemes = schemes;
@@ -215,7 +215,7 @@ public class SwaggerBundleConfiguration {
         config.setBasePath(urlPattern);
         config.setResourcePackage(resourcePackage);
         config.setSchemes(schemes);
-        config.setScan(true);
+        config.setHost(host);
         config.setScan(true);
         return config;
     }
