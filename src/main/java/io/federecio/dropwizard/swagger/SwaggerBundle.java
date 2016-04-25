@@ -64,7 +64,7 @@ public abstract class SwaggerBundle<T extends Configuration>
         environment.jersey().register(new SwaggerSerializers());
         environment.jersey().register(
                 new SwaggerResource(configurationHelper.getUrlPattern(),
-                        swaggerBundleConfiguration.getValidatorUrl()));
+                        swaggerBundleConfiguration.getSwaggerViewConfiguration()));
     }
 
     protected abstract SwaggerBundleConfiguration getSwaggerBundleConfiguration(

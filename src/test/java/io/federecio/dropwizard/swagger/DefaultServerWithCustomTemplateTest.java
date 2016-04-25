@@ -1,4 +1,3 @@
-// Copyright (C) 2014 Federico Recio
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +13,18 @@
  */
 package io.federecio.dropwizard.swagger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import io.dropwizard.testing.ResourceHelpers;
+import io.dropwizard.testing.junit.DropwizardAppRule;
+import org.junit.ClassRule;
 
-@Path("/swagger")
-@Produces(MediaType.TEXT_HTML)
-public class SwaggerResource {
-    private final SwaggerViewConfiguration config;
-    private final String urlPattern;
+public class DefaultServerWithCustomTemplateTest extends DropwizardTest {
 
-    public SwaggerResource(String urlPattern, SwaggerViewConfiguration config) {
-        this.urlPattern = urlPattern;
-        this.config = config;
-    }
+    @ClassRule
+    public static final DropwizardAppRule<TestConfiguration> RULE = new DropwizardAppRule<TestConfiguration>(
+            TestApplicationWithCustomTemplate.class,
+            ResourceHelpers.resourceFilePath("test-default.yaml"));
 
-    @GET
-    public SwaggerView get() {
-        return new SwaggerView(urlPattern, config);
+    public DefaultServerWithCustomTemplateTest() {
+        super(RULE.getLocalPort(), "/");
     }
 }

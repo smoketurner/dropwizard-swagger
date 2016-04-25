@@ -27,13 +27,16 @@ import io.dropwizard.views.View;
 public class SwaggerView extends View {
 
     private static final String SWAGGER_URI_PATH = "/swagger-static";
+
     private final String swaggerAssetsPath;
     private final String contextPath;
-    private final String validatorUrl;
+
+    private final SwaggerViewConfiguration viewConfiguration;
+
 
     public SwaggerView(@Nonnull final String urlPattern,
-            @Nonnull final String validatorUrl) {
-        super("index.ftl", StandardCharsets.UTF_8);
+                       @Nonnull SwaggerViewConfiguration config) {
+        super(config.getTemplateUrl(), StandardCharsets.UTF_8);
 
         if (urlPattern.equals("/")) {
             swaggerAssetsPath = SWAGGER_URI_PATH;
@@ -47,7 +50,14 @@ public class SwaggerView extends View {
             contextPath = urlPattern;
         }
 
-        this.validatorUrl = validatorUrl;
+        this.viewConfiguration = config;
+    }
+
+    /**
+     * Returns the title for the browser header
+     */
+    public String getTitle() {
+        return viewConfiguration.getPageTitle();
     }
 
     /**
@@ -67,9 +77,23 @@ public class SwaggerView extends View {
     }
 
     /**
-     * Returns whether the validator URL
+     * Returns the location of the validator URL or null to disable
      */
     public String getValidatorUrl() {
-        return validatorUrl;
+        return viewConfiguration.getValidatorUrl();
+    }
+
+    /**
+     * Returns whether to display the authorization input boxes
+     */
+    public boolean getShowAuth() {
+        return viewConfiguration.isShowAuth();
+    }
+
+    /**
+     * Returns whether to display the swagger spec selector
+     */
+    public boolean getShowApiSelector() {
+        return viewConfiguration.isShowApiSelector();
     }
 }
