@@ -474,6 +474,7 @@
                         <exclude>src/main/resources/**</exclude>
                         <exclude>src/site/**</exclude>
                         <exclude>*.xml</exclude>
+                        <exclude>*.sh</exclude>
                     </excludes>
                 </configuration>
                 <executions>
