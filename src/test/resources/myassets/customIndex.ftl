@@ -135,7 +135,7 @@
 <body class="swagger-section">
 <div id='header'>
   <div class="swagger-ui-wrap">
-    <a id="logo" href="http://swagger.io">swagger</a>
+    <a id="logo" href="http://dropwizard.io"><img class="logo__img" alt="swagger" height="30" width="30" src="myassets/dropwizard-logo.png" /><span class="logo__title">swagger</span></a>
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
       <div class='input'>
@@ -144,7 +144,7 @@
               <option value="1">Auth Header</option>
           </select>
       </div>
-      <div class='input' id="header_0"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input' id="header_0"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text" /></div>
       <div class='input' id="header_1" style="display: none;"><input placeholder="Basic ..." id="input_authHeader" name="authHeader" type="text"/></div>
       <div class='input'><a id="explore" href="#" data-sw-translate>Explore</a></div>
     </form>

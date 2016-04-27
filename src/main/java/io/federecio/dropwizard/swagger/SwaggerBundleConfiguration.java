@@ -46,7 +46,7 @@ public class SwaggerBundleConfiguration {
     private String contact;
     private String license;
     private String licenseUrl;
-    private String validatorUrl;
+    private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
     private Boolean prettyPrint = true;
     private String host;
     private String[] schemes = new String[]{"http"};
@@ -156,13 +156,13 @@ public class SwaggerBundleConfiguration {
     }
 
     @JsonProperty
-    public String getValidatorUrl() {
-        return validatorUrl;
+    public SwaggerViewConfiguration getSwaggerViewConfiguration() {
+        return swaggerViewConfiguration;
     }
 
     @JsonProperty
-    public void setValidatorUrl(final String validatorUrl) {
-        this.validatorUrl = validatorUrl;
+    public void setSwaggerViewConfiguration(final SwaggerViewConfiguration swaggerViewConfiguration) {
+        this.swaggerViewConfiguration = swaggerViewConfiguration;
     }
 
     @JsonProperty
