@@ -50,6 +50,10 @@ public abstract class SwaggerBundle<T extends Configuration>
                     "You need to provide an instance of SwaggerBundleConfiguration");
         }
 
+        if (! swaggerBundleConfiguration.isEnabled()) {
+            return;
+        }
+
         ConfigurationHelper configurationHelper = new ConfigurationHelper(
                 configuration, swaggerBundleConfiguration);
         new AssetsBundle("/swagger-static",

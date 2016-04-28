@@ -47,6 +47,7 @@ public class SwaggerBundleConfiguration {
     private String licenseUrl;
     private String validatorUrl;
     private Boolean prettyPrint = true;
+    private Boolean enabled = true;
 
     /**
      * For most of the scenarios this property is not needed.
@@ -170,6 +171,16 @@ public class SwaggerBundleConfiguration {
     @JsonProperty
     public void setIsPrettyPrint(final boolean isPrettyPrint) {
         this.prettyPrint = isPrettyPrint;
+    }
+
+    @JsonProperty
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @JsonProperty
+    public void setIsEnabled(final boolean isEnabled) {
+        this.enabled = isEnabled;
     }
 
     @JsonIgnore

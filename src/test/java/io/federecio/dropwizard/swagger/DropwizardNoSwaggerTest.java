@@ -1,6 +1,4 @@
 /**
- * Copyright (C) 2014 Federico Recio
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,21 +19,19 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.hamcrest.core.StringContains;
 import org.junit.Test;
 
-public abstract class DropwizardTest extends DropwizardCommonTest {
+public abstract class DropwizardNoSwaggerTest extends DropwizardCommonTest {
 
-    protected DropwizardTest(int port, String basePath) {
+    protected DropwizardNoSwaggerTest(int port, String basePath) {
         super(port, basePath);
     }
 
     @Test
     public void swaggerIsAvailable() throws Exception {
-        RestAssured.expect().statusCode(HttpStatus.OK_200)
-                .body(StringContains
-                        .containsString(TestResource.OPERATION_DESCRIPTION))
-                .when().get(Path.from(basePath, "swagger.json"));
-        RestAssured.expect().statusCode(HttpStatus.OK_200).when()
+        RestAssured.expect().statusCode(HttpStatus.NOT_FOUND_404).when()
+                .get(Path.from(basePath, "swagger.json"));
+        RestAssured.expect().statusCode(HttpStatus.NOT_FOUND_404).when()
                 .get(Path.from(basePath, "swagger"));
-        RestAssured.expect().statusCode(HttpStatus.OK_200).when()
+        RestAssured.expect().statusCode(HttpStatus.NOT_FOUND_404).when()
                 .get(Path.from(basePath, "swagger") + "/");
     }
 
