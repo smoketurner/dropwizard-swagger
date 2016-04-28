@@ -48,6 +48,7 @@ public class SwaggerBundleConfiguration {
     private Boolean prettyPrint = true;
     private String host;
     private String[] schemes = new String[] { "http" };
+    private Boolean enabled = true;
 
     /**
      * For most of the scenarios this property is not needed.
@@ -192,6 +193,16 @@ public class SwaggerBundleConfiguration {
     @JsonProperty
     public void setSchemes(String[] schemes) {
         this.schemes = schemes;
+    }
+
+    @JsonProperty
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @JsonProperty
+    public void setIsEnabled(final boolean isEnabled) {
+        this.enabled = isEnabled;
     }
 
     @JsonIgnore
