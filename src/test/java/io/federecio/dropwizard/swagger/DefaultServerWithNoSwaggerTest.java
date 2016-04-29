@@ -14,9 +14,13 @@
 package io.federecio.dropwizard.swagger;
 
 import org.junit.ClassRule;
+import org.junit.Test;
 
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
 
@@ -27,5 +31,17 @@ public class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
 
     public DefaultServerWithNoSwaggerTest() {
         super(RULE.getLocalPort(), "/");
+    }
+
+    @Test
+    public void testEnabledConfig() {
+        final SwaggerBundleConfiguration config = new SwaggerBundleConfiguration();
+
+        // true be default
+        assertTrue(config.isEnabled());
+
+        // can be overridden
+        config.setIsEnabled(false);
+        assertFalse(config.isEnabled());
     }
 }
