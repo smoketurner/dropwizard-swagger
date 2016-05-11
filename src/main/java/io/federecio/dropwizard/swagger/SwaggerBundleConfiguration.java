@@ -14,6 +14,7 @@
  */
 package io.federecio.dropwizard.swagger;
 
+import io.swagger.models.Contact;
 import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -42,6 +43,8 @@ public class SwaggerBundleConfiguration {
     private String description;
     private String termsOfServiceUrl;
     private String contact;
+    private String contactEmail;
+    private String contactUrl;
     private String license;
     private String licenseUrl;
     private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
@@ -122,6 +125,21 @@ public class SwaggerBundleConfiguration {
     @JsonProperty
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    @JsonProperty
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    @JsonProperty
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    @JsonProperty
+    public void setContactUrl(String contactUrl) {
+        this.contactUrl = contactUrl;
     }
 
     @JsonProperty
@@ -227,6 +245,21 @@ public class SwaggerBundleConfiguration {
         config.setSchemes(schemes);
         config.setHost(host);
         config.setScan(true);
+
+        // Assign contact email/url after scan, since BeanConfig.scan will create a new info.Contact instance, thus
+        // overriding any info.Contact settings prior to scan.
+        if (contactEmail != null || contactUrl != null) {
+            if (config.getInfo().getContact() == null) {
+                config.getInfo().setContact(new Contact());
+            }
+            if (contactEmail != null) {
+                config.getInfo().getContact().setEmail(contactEmail);
+            }
+            if (contactUrl != null) {
+                config.getInfo().getContact().setUrl(contactUrl);
+            }
+        }
+
         return config;
     }
 }
