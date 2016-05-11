@@ -128,13 +128,18 @@ public class SwaggerBundleConfiguration {
     }
 
     @JsonProperty
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    @JsonProperty
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
 
     @JsonProperty
-    public String getContactEmail() {
-        return contactEmail;
+    public String getContactUrl() {
+        return contactUrl;
     }
 
     @JsonProperty
