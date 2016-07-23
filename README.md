@@ -27,7 +27,7 @@ dropwizard-swagger| Dropwizard |Swagger API|Swagger UI
        0.7.x      |   0.8.x    |   1.5.1-M2| v2.1.4-M1
        0.7.2      |   0.8.4    |   1.5.3   | v2.1.2
        0.9.x      |   0.9.x    |   1.5.9   | v2.1.4
-       1.0.0-rc3  |   1.0.0-rc3|   1.5.9   | v2.1.4
+       1.0.0-rc4  |   1.0.0-rc4|   1.5.9   | v2.1.5
 
 How to use it
 -------------

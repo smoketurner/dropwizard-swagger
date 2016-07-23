@@ -11,15 +11,18 @@
   <link href='${swaggerAssetsPath}/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
   <link href='${swaggerAssetsPath}/css/reset.css' media='print' rel='stylesheet' type='text/css'/>
   <link href='${swaggerAssetsPath}/css/print.css' media='print' rel='stylesheet' type='text/css'/>
+
+  <script src='${swaggerAssetsPath}/lib/object-assign-pollyfill.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery-1.8.0.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery.slideto.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery.wiggle.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/handlebars-2.0.0.js' type='text/javascript'></script>
-  <script src='${swaggerAssetsPath}/lib/underscore-min.js' type='text/javascript'></script>
+  <script src='${swaggerAssetsPath}/lib/lodash.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/backbone-min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/swagger-ui.js' type='text/javascript'></script>
-  <script src='${swaggerAssetsPath}/lib/highlight.7.3.pack.js' type='text/javascript'></script>
+  <script src='${swaggerAssetsPath}/lib/highlight.9.1.0.pack.js' type='text/javascript'></script>
+  <script src='${swaggerAssetsPath}/lib/highlight.9.1.0.pack_extended.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jsoneditor.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/marked.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/swagger-oauth.js' type='text/javascript'></script>
@@ -31,6 +34,10 @@
 
   <script type="text/javascript">
     $(function () {
+      hljs.configure({
+        highlightSizeThreshold: 5000
+      });
+
       // Pre load translate...
       if(window.SwaggerTranslator) {
         window.SwaggerTranslator.translate();
@@ -51,7 +58,7 @@
               clientId: "your-client-id",
               clientSecret: "your-client-secret-if-required",
               realm: "your-realms",
-              appName: "your-app-name", 
+              appName: "your-app-name",
               scopeSeparator: ",",
               additionalQueryStringParams: {}
             });
@@ -61,10 +68,6 @@
           if(window.SwaggerTranslator) {
             window.SwaggerTranslator.translate();
           }
-
-          $('pre code').each(function(i, e) {
-            hljs.highlightBlock(e)
-          });
         },
         onFailure: function(data) {
           log("Unable to Load SwaggerUI");
@@ -79,19 +82,19 @@
       <#if showAuth>
         function addApiKeyAuthorization() {
           var key = encodeURIComponent($('#input_apiKey')[0].value);
-          if(key && key.trim() != "") {
-              var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-              window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-              log("added key " + key);
+          if (key && key.trim() != "") {
+            var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+            window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+            log("added key " + key);
           }
         }
 
         function addAuthorizationHeader() {
           var key = $('#input_authHeader')[0].value;
-          if(key && key.trim() != "") {
-              var headerAuth = new SwaggerClient.ApiKeyAuthorization("Authorization", key, "header");
-              window.swaggerUi.api.clientAuthorizations.add("Custom Authorization", headerAuth);
-              log("added key " + key);
+          if (key && key.trim() != "") {
+            var headerAuth = new SwaggerClient.ApiKeyAuthorization("Authorization", key, "header");
+            window.swaggerUi.api.clientAuthorizations.add("Custom Authorization", headerAuth);
+            log("added key " + key);
           }
         }
 
@@ -135,18 +138,19 @@
 <body class="swagger-section">
 <div id='header'>
   <div class="swagger-ui-wrap">
-    <a id="logo" href="http://swagger.io">swagger</a>
+    <a id="logo" href="http://swagger.io"><img class="logo__img" alt="swagger" height="30" width="30" src="${swaggerAssetsPath}/images/logo_small.png" /><span class="logo__title">swagger</span></a>
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
       <div class='input'>
-          <select id="input_headerSelect">
-              <option value="0">api_key</option>
-              <option value="1">Auth Header</option>
-          </select>
+        <select id="input_headerSelect">
+          <option value="0">api_key</option>
+          <option value="1">Auth Header</option>
+        </select>
       </div>
       <div class='input' id="header_0"><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
       <div class='input' id="header_1" style="display: none;"><input placeholder="Basic ..." id="input_authHeader" name="authHeader" type="text"/></div>
-      <div class='input'><a id="explore" href="#" data-sw-translate>Explore</a></div>
+      <div id='auth_container'></div>
+      <div class='input'><a id="explore" class="header__btn" href="#" data-sw-translate>Explore</a></div>
     </form>
   </div>
 </div>
@@ -155,4 +159,3 @@
 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 </body>
 </html>
-
