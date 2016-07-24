@@ -66,7 +66,7 @@ public abstract class SeleniumTest {
 
     protected void assertResponseBodyIs(String contentId, String body) {
         By xpath = By.xpath(String.format(
-                "//div[@id='%s']/div[@class='response']/div[@class='block response_body undefined']/pre/code",
+                "//div[@id='%s']/div[@class='response']/div[@class='block response_body hljs']/pre/code",
                 contentId));
         new WebDriverWait(driver, WAIT_IN_SECONDS).until(ExpectedConditions
                 .textToBePresentInElementLocated(xpath, body));

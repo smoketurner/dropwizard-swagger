@@ -488,6 +488,7 @@
                         <exclude>src/site/**</exclude>
                         <exclude>*.xml</exclude>
                         <exclude>*.sh</exclude>
+                        <exclude>*.yml</exclude>
                     </excludes>
                 </configuration>
                 <executions>
