@@ -17,7 +17,7 @@
   <script src='${swaggerAssetsPath}/lib/jquery.slideto.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery.wiggle.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
-  <script src='${swaggerAssetsPath}/lib/handlebars-2.0.0.js' type='text/javascript'></script>
+  <script src='${swaggerAssetsPath}/lib/handlebars-4.0.5.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/lodash.min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/lib/backbone-min.js' type='text/javascript'></script>
   <script src='${swaggerAssetsPath}/swagger-ui.js' type='text/javascript'></script>
@@ -59,7 +59,7 @@
               clientSecret: "your-client-secret-if-required",
               realm: "your-realms",
               appName: "your-app-name",
-              scopeSeparator: ",",
+              scopeSeparator: " ",
               additionalQueryStringParams: {}
             });
             */
