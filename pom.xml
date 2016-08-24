@@ -483,6 +483,9 @@
                     <excludes>
                         <exclude>**/README</exclude>
                         <exclude>**/LICENSE</exclude>
+                        <exclude>**/.editorconfig</exclude>
+                        <exclude>**/.java-version</exclude>
+                        <exclude>**/.gitattributes</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>src/site/**</exclude>
