@@ -1,0 +1,33 @@
+# Swagger-specific options.
+swagger:
+
+  resourcePackage: io.federecio.dropwizard.swagger.sample
+  title: Sample API
+  version: v1
+  description: Sample service API
+  contact: jplock@smoketurner.com
+  license: Apache 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+
+# HTTP-specific options.
+server:
+
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8080
+
+  requestLog:
+    appenders:
+      - type: console
+        timeZone: UTC
+        target: stdout
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      timeZone: UTC
+      target: stdout

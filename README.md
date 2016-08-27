@@ -73,8 +73,8 @@ public void initialize(Bootstrap<YourConfiguration> bootstrap) {
         protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(YourConfiguration configuration) {
             return configuration.swaggerBundleConfiguration;
         }
-    }
-});
+    });
+}
 ```
 
 * As usual, add Swagger annotations to your resource classes and methods
