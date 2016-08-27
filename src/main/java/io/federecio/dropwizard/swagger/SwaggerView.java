@@ -37,13 +37,13 @@ public class SwaggerView extends View {
             @Nonnull SwaggerViewConfiguration config) {
         super(config.getTemplateUrl(), StandardCharsets.UTF_8);
 
-        if (urlPattern.equals("/")) {
+        if ("/".equals(urlPattern)) {
             swaggerAssetsPath = SWAGGER_URI_PATH;
         } else {
             swaggerAssetsPath = urlPattern + SWAGGER_URI_PATH;
         }
 
-        if (urlPattern.equals("/")) {
+        if ("/".equals(urlPattern)) {
             contextPath = "";
         } else {
             contextPath = urlPattern;

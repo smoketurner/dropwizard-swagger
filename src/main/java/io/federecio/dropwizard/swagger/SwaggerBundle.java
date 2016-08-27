@@ -34,7 +34,7 @@ public abstract class SwaggerBundle<T extends Configuration>
 
     @Override
     public void initialize(Bootstrap<?> bootstrap) {
-        bootstrap.addBundle(new ViewBundle<Configuration>());
+        bootstrap.addBundle(new ViewBundle<>());
         ModelConverters.getInstance()
                 .addConverter(new ModelResolver(bootstrap.getObjectMapper()));
     }
@@ -48,7 +48,7 @@ public abstract class SwaggerBundle<T extends Configuration>
                     "You need to provide an instance of SwaggerBundleConfiguration");
         }
 
-        if (! swaggerBundleConfiguration.isEnabled()) {
+        if (!swaggerBundleConfiguration.isEnabled()) {
             return;
         }
 

@@ -14,13 +14,13 @@
  */
 package io.federecio.dropwizard.swagger;
 
-import io.swagger.models.Contact;
 import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.models.Contact;
 
 /**
  * For the meaning of all these properties please refer to Swagger documentation
@@ -251,8 +251,9 @@ public class SwaggerBundleConfiguration {
         config.setHost(host);
         config.setScan(true);
 
-        // Assign contact email/url after scan, since BeanConfig.scan will create a new info.Contact instance, thus
-        // overriding any info.Contact settings prior to scan.
+        // Assign contact email/url after scan, since BeanConfig.scan will
+        // create a new info.Contact instance, thus overriding any info.Contact
+        // settings prior to scan.
         if (contactEmail != null || contactUrl != null) {
             if (config.getInfo().getContact() == null) {
                 config.getInfo().setContact(new Contact());

@@ -27,7 +27,7 @@ dropwizard-swagger| Dropwizard |Swagger API|Swagger UI
        0.7.x      |   0.8.x    |   1.5.1-M2| v2.1.4-M1
        0.7.2      |   0.8.4    |   1.5.3   | v2.1.2
        0.9.x      |   0.9.x    |   1.5.9   | v2.1.5
-       1.0.x      |   1.0.x    |   1.5.10  | v2.2.1
+       1.0.x      |   1.0.x    |   1.5.10  | v2.2.2
 
 How to use it
 -------------
@@ -68,11 +68,11 @@ swagger:
 ```java
 @Override
 public void initialize(Bootstrap<YourConfiguration> bootstrap) {
-    bootstrap.addBundle(new SwaggerBundle<TestConfiguration>() {
-
-    @Override
-    protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(YourConfiguration configuration) {
-        return configuration.swaggerBundleConfiguration;
+    bootstrap.addBundle(new SwaggerBundle<YourConfiguration>() {
+        @Override
+        protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(YourConfiguration configuration) {
+            return configuration.swaggerBundleConfiguration;
+        }
     }
 });
 ```
@@ -80,11 +80,6 @@ public void initialize(Bootstrap<YourConfiguration> bootstrap) {
 * As usual, add Swagger annotations to your resource classes and methods
 
 * Open a browser and hit `http://localhost:<your_port>/swagger`
-
-Sample Application
-------------------
-
-Take a look at this sample application that shows how to integrate DropWizard and Swagger: [dropwizard-swagger-sample-app](https://github.com/federecio/dropwizard-swagger-sample-app)
 
 Additional Swagger configuration
 --------------------------------
