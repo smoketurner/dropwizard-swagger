@@ -1,4 +1,4 @@
-package io.federecio.dropwizard.swagger.sample;
+package io.federecio.dropwizard.sample;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

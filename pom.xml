@@ -4,7 +4,7 @@
 
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>1.0.0-2-SNAPSHOT</version>
+    <version>1.0.2-1-SNAPSHOT</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
@@ -56,7 +56,7 @@
     </scm>
 
     <properties>
-        <dropwizard.version>1.0.0</dropwizard.version>
+        <dropwizard.version>1.0.2</dropwizard.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <file.encoding>UTF-8</file.encoding>
@@ -133,6 +133,10 @@
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-auth</artifactId>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
@@ -224,7 +228,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -244,11 +248,6 @@
                     <artifactId>commons-lang3</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-auth</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -318,12 +317,12 @@
                     <dependency>
                         <groupId>org.codehaus.plexus</groupId>
                         <artifactId>plexus-compiler-javac-errorprone</artifactId>
-                        <version>2.8</version>
+                        <version>2.8.1</version>
                     </dependency>
                     <dependency>
                         <groupId>com.google.errorprone</groupId>
                         <artifactId>error_prone_core</artifactId>
-                        <version>2.0.11</version>
+                        <version>2.0.13</version>
                     </dependency>
                </dependencies>
             </plugin>
@@ -430,7 +429,7 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.2.0</version>
+                <version>4.3.0</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

@@ -1,6 +1,11 @@
-package io.federecio.dropwizard.swagger.sample;
+package io.federecio.dropwizard.sample;
 
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import io.dropwizard.Application;
+import io.dropwizard.auth.AuthDynamicFeature;
+import io.dropwizard.auth.AuthValueFactoryProvider;
+import io.dropwizard.auth.PrincipalImpl;
+import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
@@ -31,6 +36,16 @@ public class SampleApplication extends Application<SampleConfiguration> {
     @Override
     public void run(SampleConfiguration configuration, Environment environment)
             throws Exception {
+
+        environment.jersey().register(new AuthDynamicFeature(
+                new BasicCredentialAuthFilter.Builder<PrincipalImpl>()
+                        .setAuthenticator(new SampleAuthenticator())
+                        .setRealm("SUPER SECRET STUFF").buildAuthFilter()));
+        environment.jersey().register(RolesAllowedDynamicFeature.class);
+        environment.jersey().register(
+                new AuthValueFactoryProvider.Binder<>(PrincipalImpl.class));
+
+        // resources
         environment.jersey().register(new SampleResource());
     }
 }

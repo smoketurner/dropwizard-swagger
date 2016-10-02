@@ -1,7 +1,7 @@
 # Swagger-specific options.
 swagger:
 
-  resourcePackage: io.federecio.dropwizard.swagger.sample
+  resourcePackage: io.federecio.dropwizard.sample
   title: Sample API
   version: v1
   description: Sample service API
@@ -18,16 +18,3 @@ server:
   connector:
     type: http
     port: 8080
-
-  requestLog:
-    appenders:
-      - type: console
-        timeZone: UTC
-        target: stdout
-
-logging:
-  level: INFO
-  appenders:
-    - type: console
-      timeZone: UTC
-      target: stdout
