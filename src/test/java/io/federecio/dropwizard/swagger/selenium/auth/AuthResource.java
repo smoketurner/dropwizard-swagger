@@ -23,11 +23,20 @@ import javax.ws.rs.core.Response;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.auth.PrincipalImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.SecurityDefinition;
+import io.swagger.annotations.SwaggerDefinition;
 
 @Api("/auth")
 @Path("/auth.json")
+@SwaggerDefinition(securityDefinition = @SecurityDefinition(apiKeyAuthDefintions = {
+        @ApiKeyAuthDefinition(in = ApiKeyAuthDefinition.ApiKeyLocation.QUERY,
+                              key = "query_api_key", name = "api_key"),
+        @ApiKeyAuthDefinition(in = ApiKeyAuthDefinition.ApiKeyLocation.HEADER,
+                              key = "header_api_key",
+                              name = "Authorization") }))
 public class AuthResource {
     public static final String OPERATION_DESCRIPTION = "This is a protected dummy endpoint for test";
 

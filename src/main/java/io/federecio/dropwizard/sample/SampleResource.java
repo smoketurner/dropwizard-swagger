@@ -16,7 +16,8 @@ import io.swagger.annotations.SwaggerDefinition;
 
 @Api("/")
 @Path("/")
-@SwaggerDefinition(securityDefinition = @SecurityDefinition(basicAuthDefinions = @BasicAuthDefinition(key = "sample")))
+@SwaggerDefinition(securityDefinition = @SecurityDefinition(basicAuthDefinions = {
+        @BasicAuthDefinition(key = "sample") }))
 public class SampleResource {
 
     @GET

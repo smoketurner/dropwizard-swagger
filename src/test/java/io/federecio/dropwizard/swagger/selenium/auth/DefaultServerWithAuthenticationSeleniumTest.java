@@ -14,11 +14,12 @@
  */
 package io.federecio.dropwizard.swagger.selenium.auth;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import io.federecio.dropwizard.swagger.TestConfiguration;
@@ -27,7 +28,7 @@ import io.federecio.dropwizard.swagger.selenium.SeleniumTest;
 public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
     @ClassRule
-    public static final DropwizardAppRule<TestConfiguration> RULE = new DropwizardAppRule<TestConfiguration>(
+    public static final DropwizardAppRule<TestConfiguration> RULE = new DropwizardAppRule<>(
             TestAuthApplication.class, ResourceHelpers
                     .resourceFilePath("test-default-authenticated.yaml"));
 
@@ -56,10 +57,13 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
         String token = "secret";
 
-        new Select(driver.findElement(By.id("input_headerSelect")))
-                .selectByVisibleText("Auth Header");
-        driver.findElement(By.id("input_authHeader"))
-                .sendKeys("Bearer " + token);
+        driver.findElement(By.className("authorize__btn")).click();
+        final List<WebElement> inputs = driver
+                .findElements(By.className("input_apiKey_entry"));
+        inputs.get(0).sendKeys("Bearer " + token);
+        final List<WebElement> buttons = driver
+                .findElements(By.className("auth_submit__button"));
+        buttons.get(0).click();
 
         clickOnTryOut("auth_protectedDummyEndpoint_content");
         assertResponseCodeIs("auth_protectedDummyEndpoint_content", 200);
@@ -75,9 +79,13 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
         String apiKey = "bab0d85f-00ea-4463-9ab2-d564518b120e";
 
-        new Select(driver.findElement(By.id("input_headerSelect")))
-                .selectByVisibleText("api_key");
-        driver.findElement(By.id("input_apiKey")).sendKeys(apiKey);
+        driver.findElement(By.className("authorize__btn")).click();
+        final List<WebElement> inputs = driver
+                .findElements(By.className("input_apiKey_entry"));
+        inputs.get(1).sendKeys(apiKey);
+        final List<WebElement> buttons = driver
+                .findElements(By.className("auth_submit__button"));
+        buttons.get(1).click();
 
         clickOnTryOut("auth_apiKeyDummyEndpoint_content");
         assertResponseCodeIs("auth_apiKeyDummyEndpoint_content", 200);

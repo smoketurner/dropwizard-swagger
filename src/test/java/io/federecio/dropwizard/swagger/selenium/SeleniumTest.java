@@ -94,7 +94,7 @@ public abstract class SeleniumTest {
                 "//div[@id='%s']/form/div[@class='sandbox_header']/input[@value='Try it out!']",
                 contentId));
         new WebDriverWait(driver, WAIT_IN_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(xpath));
+                .until(ExpectedConditions.visibilityOfElementLocated(xpath));
         driver.findElement(xpath).click();
     }
 }

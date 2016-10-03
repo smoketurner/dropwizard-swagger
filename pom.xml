@@ -61,7 +61,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <file.encoding>UTF-8</file.encoding>
         <jdk.version>1.8</jdk.version>
-        <swagger.version>1.5.10</swagger.version>
+        <swagger.version>1.5.11-SNAPSHOT</swagger.version>
     </properties>
 
     <ciManagement>
@@ -487,6 +487,7 @@
                         <exclude>**/.gitattributes</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
+                        <exclude>src/main/java/io/federecio/dropwizard/sample/**</exclude>
                         <exclude>src/site/**</exclude>
                         <exclude>*.xml</exclude>
                         <exclude>*.sh</exclude>
