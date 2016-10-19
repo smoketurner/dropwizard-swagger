@@ -39,17 +39,8 @@ public class SwaggerView extends View {
 
         String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
 
-        if (urlPattern.equals("/")) {
-            swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
-        } else {
-            swaggerAssetsPath = contextRootPrefix + urlPattern + SWAGGER_URI_PATH;
-        }
-
-        if (urlPattern.equals("/")) {
-            contextPath = contextRootPrefix;
-        } else {
-            contextPath = contextRootPrefix + urlPattern;
-        }
+        swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
+        contextPath = urlPattern.equals("/") ? contextRootPrefix : (contextRootPrefix + urlPattern);
 
         this.viewConfiguration = config;
     }
