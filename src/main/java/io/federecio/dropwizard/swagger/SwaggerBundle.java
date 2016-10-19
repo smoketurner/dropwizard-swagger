@@ -63,6 +63,7 @@ public abstract class SwaggerBundle<T extends Configuration>
         environment.jersey().register(new ApiListingResource());
         environment.jersey().register(new SwaggerSerializers());
         environment.jersey().register(new SwaggerResource(
+                swaggerBundleConfiguration.getContextRoot(),
                 configurationHelper.getUrlPattern(),
                 swaggerBundleConfiguration.getSwaggerViewConfiguration()));
     }

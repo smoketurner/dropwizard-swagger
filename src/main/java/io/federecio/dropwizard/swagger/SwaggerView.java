@@ -33,20 +33,22 @@ public class SwaggerView extends View {
 
     private final SwaggerViewConfiguration viewConfiguration;
 
-    public SwaggerView(@Nonnull final String urlPattern,
+    public SwaggerView(@Nonnull final String contextRoot, @Nonnull final String urlPattern,
             @Nonnull SwaggerViewConfiguration config) {
         super(config.getTemplateUrl(), StandardCharsets.UTF_8);
 
+        String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
+
         if (urlPattern.equals("/")) {
-            swaggerAssetsPath = SWAGGER_URI_PATH;
+            swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
         } else {
-            swaggerAssetsPath = urlPattern + SWAGGER_URI_PATH;
+            swaggerAssetsPath = contextRootPrefix + urlPattern + SWAGGER_URI_PATH;
         }
 
         if (urlPattern.equals("/")) {
-            contextPath = "";
+            contextPath = contextRootPrefix;
         } else {
-            contextPath = urlPattern;
+            contextPath = contextRootPrefix + urlPattern;
         }
 
         this.viewConfiguration = config;
