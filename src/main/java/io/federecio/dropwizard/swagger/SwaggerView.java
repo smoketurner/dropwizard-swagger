@@ -33,8 +33,9 @@ public class SwaggerView extends View {
 
     private final SwaggerViewConfiguration viewConfiguration;
 
-    public SwaggerView(@Nonnull final String contextRoot, @Nonnull final String urlPattern,
-            @Nonnull SwaggerViewConfiguration config) {
+    public SwaggerView(@Nonnull final String contextRoot,
+                       @Nonnull final String urlPattern,
+                       @Nonnull SwaggerViewConfiguration config) {
         super(config.getTemplateUrl(), StandardCharsets.UTF_8);
 
         String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;

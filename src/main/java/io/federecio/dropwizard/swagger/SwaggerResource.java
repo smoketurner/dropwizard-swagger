@@ -32,7 +32,7 @@ public class SwaggerResource {
         this.contextRoot = "/";
     }
 
-    public SwaggerResource(String contextRoot, String urlPattern, SwaggerViewConfiguration config) {
+    public SwaggerResource(String urlPattern, SwaggerViewConfiguration config, String contextRoot) {
         this.urlPattern = urlPattern;
         this.config = config;
         this.contextRoot = contextRoot;
