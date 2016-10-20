@@ -23,15 +23,23 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.TEXT_HTML)
 public class SwaggerResource {
     private final SwaggerViewConfiguration config;
+    private final String contextRoot;
     private final String urlPattern;
 
     public SwaggerResource(String urlPattern, SwaggerViewConfiguration config) {
         this.urlPattern = urlPattern;
         this.config = config;
+        this.contextRoot = "/";
+    }
+
+    public SwaggerResource(String urlPattern, SwaggerViewConfiguration config, String contextRoot) {
+        this.config = config;
+        this.urlPattern = urlPattern;
+        this.contextRoot = contextRoot;
     }
 
     @GET
     public SwaggerView get() {
-        return new SwaggerView(urlPattern, config);
+        return new SwaggerView(contextRoot, urlPattern, config);
     }
 }

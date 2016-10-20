@@ -50,6 +50,7 @@ public class SwaggerBundleConfiguration {
     private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
     private Boolean prettyPrint = true;
     private String host;
+    private String contextRoot = "/";
     private String[] schemes = new String[] { "http" };
     private Boolean enabled = true;
 
@@ -209,6 +210,16 @@ public class SwaggerBundleConfiguration {
     }
 
     @JsonProperty
+    public String getContextRoot() {
+        return contextRoot;
+    }
+
+    @JsonProperty
+    public void setContextRoot(String contextRoot) {
+        this.contextRoot = contextRoot;
+    }
+
+    @JsonProperty
     public String[] getSchemes() {
         return schemes;
     }
@@ -245,7 +256,7 @@ public class SwaggerBundleConfiguration {
         config.setLicenseUrl(licenseUrl);
         config.setTermsOfServiceUrl(termsOfServiceUrl);
         config.setPrettyPrint(prettyPrint);
-        config.setBasePath(urlPattern);
+        config.setBasePath(("/".equals(contextRoot) ? "" : contextRoot) + urlPattern);
         config.setResourcePackage(resourcePackage);
         config.setSchemes(schemes);
         config.setHost(host);

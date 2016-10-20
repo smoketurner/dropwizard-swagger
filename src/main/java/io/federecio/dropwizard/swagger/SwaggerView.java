@@ -3,9 +3,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,21 +33,15 @@ public class SwaggerView extends View {
 
     private final SwaggerViewConfiguration viewConfiguration;
 
-    public SwaggerView(@Nonnull final String urlPattern,
-            @Nonnull SwaggerViewConfiguration config) {
+    public SwaggerView(@Nonnull final String contextRoot,
+                       @Nonnull final String urlPattern,
+                       @Nonnull SwaggerViewConfiguration config) {
         super(config.getTemplateUrl(), StandardCharsets.UTF_8);
 
-        if ("/".equals(urlPattern)) {
-            swaggerAssetsPath = SWAGGER_URI_PATH;
-        } else {
-            swaggerAssetsPath = urlPattern + SWAGGER_URI_PATH;
-        }
+        String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
 
-        if ("/".equals(urlPattern)) {
-            contextPath = "";
-        } else {
-            contextPath = urlPattern;
-        }
+        swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
+        contextPath = urlPattern.equals("/") ? contextRootPrefix : (contextRootPrefix + urlPattern);
 
         this.viewConfiguration = config;
     }
