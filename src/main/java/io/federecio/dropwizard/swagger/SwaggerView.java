@@ -40,7 +40,13 @@ public class SwaggerView extends View {
 
         String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
 
-        swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
+        if (!contextRootPrefix.isEmpty()) { //swagger-static should be found on the root context
+            swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
+        }
+        else {
+            swaggerAssetsPath = (urlPattern.equals("/") ? SWAGGER_URI_PATH : (urlPattern + SWAGGER_URI_PATH));
+        }
+
         contextPath = urlPattern.equals("/") ? contextRootPrefix : (contextRootPrefix + urlPattern);
 
         this.viewConfiguration = config;
