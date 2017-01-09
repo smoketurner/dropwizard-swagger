@@ -1,0 +1,12 @@
+server:
+  type: default
+  applicationContextPath: /app
+  applicationConnectors:
+    - type: http
+      port: 0
+  adminConnectors:
+    - type: http
+      port: 0
+swagger:
+  contextRoot: /serverroot
+  resourcePackage: io.federecio.dropwizard.swagger
