@@ -26,7 +26,6 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import io.federecio.dropwizard.swagger.TestConfiguration;
 import io.federecio.dropwizard.swagger.selenium.SeleniumTest;
 
-@Ignore
 public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
     @ClassRule
