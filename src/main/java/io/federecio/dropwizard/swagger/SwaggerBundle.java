@@ -35,7 +35,7 @@ public abstract class SwaggerBundle<T extends Configuration>
 
     @Override
     public void initialize(Bootstrap<?> bootstrap) {
-        bootstrap.addBundle(new ViewBundle<>());
+        bootstrap.addBundle(new ViewBundle<Configuration>());
         ModelConverters.getInstance()
                 .addConverter(new ModelResolver(bootstrap.getObjectMapper()));
     }
