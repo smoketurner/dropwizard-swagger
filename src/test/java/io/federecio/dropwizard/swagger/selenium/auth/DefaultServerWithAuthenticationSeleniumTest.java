@@ -17,6 +17,7 @@ package io.federecio.dropwizard.swagger.selenium.auth;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,7 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import io.federecio.dropwizard.swagger.TestConfiguration;
 import io.federecio.dropwizard.swagger.selenium.SeleniumTest;
 
+@Ignore
 public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
     @ClassRule
