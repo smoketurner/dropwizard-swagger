@@ -15,18 +15,20 @@
 package io.federecio.dropwizard.swagger.selenium;
 
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class SeleniumTest {
 
+    private static ChromeDriverService service;
     protected static final int WAIT_IN_SECONDS = 1000;
-    protected FirefoxDriver driver;
+    protected WebDriver driver;
 
     protected String getSwaggerUrl(int port, String path) {
         return String.format("http://127.0.0.1:%d%s", port, path);
@@ -34,15 +36,27 @@ public abstract class SeleniumTest {
 
     protected abstract String getSwaggerUrl();
 
+    @BeforeClass
+     public static void createAndStartService() throws Exception {
+                service = new ChromeDriverService.Builder().withSilent(true)
+                                .usingAnyFreePort().build();
+                service.start();
+            }
+
+           @AfterClass
+     public static void stopService() {
+                service.stop();
+            }
+
     @Before
     public void setUpTests() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
     }
 
     @After
     public void terminate() {
         if (driver != null) {
-            driver.kill();
+            driver.quit();
         }
     }
 
@@ -77,7 +91,7 @@ public abstract class SeleniumTest {
                 "//div[@id='%s']/form/div[@class='sandbox_header']/input[@value='Try it out!']",
                 contentId));
         new WebDriverWait(driver, WAIT_IN_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(xpath));
+                .until(ExpectedConditions.visibilityOfElementLocated(xpath));
         driver.findElement(xpath).click();
     }
 }
