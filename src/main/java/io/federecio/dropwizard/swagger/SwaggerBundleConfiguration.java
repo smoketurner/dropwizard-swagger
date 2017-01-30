@@ -48,6 +48,7 @@ public class SwaggerBundleConfiguration {
     private String license;
     private String licenseUrl;
     private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
+    private SwaggerOAuth2Configuration swaggerOAuth2Configuration = new SwaggerOAuth2Configuration();
     private boolean prettyPrint = true;
     private String host;
     private String contextRoot = "/";
@@ -188,6 +189,16 @@ public class SwaggerBundleConfiguration {
     public void setSwaggerViewConfiguration(
             final SwaggerViewConfiguration swaggerViewConfiguration) {
         this.swaggerViewConfiguration = swaggerViewConfiguration;
+    }
+
+    @JsonProperty
+    public SwaggerOAuth2Configuration getSwaggerOAuth2Configuration() {
+        return swaggerOAuth2Configuration;
+    }
+
+    @JsonProperty("oauth2")
+    public void setSwaggerOAuth2Configuration(final SwaggerOAuth2Configuration swaggerOAuth2Configuration) {
+        this.swaggerOAuth2Configuration = swaggerOAuth2Configuration;
     }
 
     @JsonProperty

@@ -55,12 +55,16 @@
         onComplete: function(swaggerApi, swaggerUi){
           if(typeof initOAuth == "function") {
             initOAuth({
-              clientId: "your-client-id",
-              clientSecret: "your-client-secret-if-required",
-              realm: "your-realms",
-              appName: "your-app-name",
-              scopeSeparator: " ",
-              additionalQueryStringParams: {}
+              clientId: "${oauth2Configuration.clientId!"your-client-id"}",
+              clientSecret: "${oauth2Configuration.clientSecret!"your-client-secret-if-required"}",
+              realm: "${oauth2Configuration.realm!"your-realms"}",
+              appName: "${oauth2Configuration.appName!"your-app-name"}",
+              scopeSeparator: "${oauth2Configuration.scopeSeparator!" "}",
+              additionalQueryStringParams: {
+                <#list oauth2Configuration.additionalQueryStringParams?keys as additionalQueryStringParamKey>
+                "${additionalQueryStringParamKey}": "${oauth2Configuration.additionalQueryStringParams[additionalQueryStringParamKey]}"
+                </#list>
+              }
             });
           }
 

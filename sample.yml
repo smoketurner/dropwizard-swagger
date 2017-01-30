@@ -9,6 +9,13 @@ swagger:
   license: Apache 2.0
   licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
 
+  oauth2:
+
+    clientId: "demoapp"
+    appName: "dropwizard-sample"
+    additionalQueryStringParams:
+      foo: "bar"
+
 # HTTP-specific options.
 server:
 

@@ -32,11 +32,13 @@ public class SwaggerView extends View {
     private final String contextPath;
 
     private final SwaggerViewConfiguration viewConfiguration;
+    private final SwaggerOAuth2Configuration oauth2Configuration;
 
     public SwaggerView(@Nonnull final String contextRoot,
                        @Nonnull final String urlPattern,
-                       @Nonnull SwaggerViewConfiguration config) {
-        super(config.getTemplateUrl(), StandardCharsets.UTF_8);
+                       @Nonnull SwaggerViewConfiguration viewConfiguration,
+                       @Nonnull SwaggerOAuth2Configuration oauth2Configuration) {
+        super(viewConfiguration.getTemplateUrl(), StandardCharsets.UTF_8);
 
         String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
 
@@ -49,7 +51,8 @@ public class SwaggerView extends View {
 
         contextPath = urlPattern.equals("/") ? contextRootPrefix : (contextRootPrefix + urlPattern);
 
-        this.viewConfiguration = config;
+        this.viewConfiguration = viewConfiguration;
+        this.oauth2Configuration = oauth2Configuration;
     }
 
     /**
@@ -94,5 +97,12 @@ public class SwaggerView extends View {
      */
     public boolean getShowApiSelector() {
         return viewConfiguration.isShowApiSelector();
+    }
+
+    /**
+     * @return {@link SwaggerOAuth2Configuration} containing every properties to init oauth2
+     */
+    public SwaggerOAuth2Configuration getOauth2Configuration() {
+        return oauth2Configuration;
     }
 }
