@@ -6,7 +6,7 @@ import io.dropwizard.auth.Authenticator;
 import io.dropwizard.auth.PrincipalImpl;
 import io.dropwizard.auth.basic.BasicCredentials;
 
-public class SampleAuthenticator
+public class SampleBasicAuthenticator
         implements Authenticator<BasicCredentials, PrincipalImpl> {
 
     @Override
