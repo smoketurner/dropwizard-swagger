@@ -29,7 +29,7 @@ public class TestAuthApplication extends TestApplication {
     public void run(TestConfiguration configuration, Environment environment) throws Exception {
         super.run(configuration, environment);
         environment.jersey().register(new AuthResource());
-        environment.jersey().register(new OAuth2Resource());
+        environment.jersey().register(new OAuth2Resource(configuration.swaggerBundleConfiguration.getSwaggerOAuth2Configuration()));
 
         environment.jersey().register(new AuthDynamicFeature(
                 new OAuthCredentialAuthFilter.Builder<PrincipalImpl>()

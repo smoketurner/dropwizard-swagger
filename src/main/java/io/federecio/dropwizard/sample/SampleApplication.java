@@ -60,6 +60,6 @@ public class SampleApplication extends Application<SampleConfiguration> {
 
         // resources
         environment.jersey().register(new SampleResource());
-        environment.jersey().register(new OAuth2Resource());
+        environment.jersey().register(new OAuth2Resource(configuration.getSwagger().getSwaggerOAuth2Configuration()));
     }
 }

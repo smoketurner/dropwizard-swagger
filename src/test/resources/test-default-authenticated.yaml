@@ -8,3 +8,8 @@ server:
       port: 0
 swagger:
   resourcePackage: io.federecio.dropwizard.swagger
+
+  oauth2:
+      clientId: "demoapp"
+      appName: "dropwizard-sample"
+      realm: "smoketurner"

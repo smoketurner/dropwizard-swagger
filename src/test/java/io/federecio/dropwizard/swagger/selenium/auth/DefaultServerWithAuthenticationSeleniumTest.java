@@ -14,16 +14,18 @@
  */
 package io.federecio.dropwizard.swagger.selenium.auth;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import io.dropwizard.testing.ResourceHelpers;
+import io.dropwizard.testing.junit.DropwizardAppRule;
+import io.federecio.dropwizard.sample.OAuth2Resource;
+import io.federecio.dropwizard.swagger.TestConfiguration;
+import io.federecio.dropwizard.swagger.selenium.SeleniumTest;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import io.dropwizard.testing.ResourceHelpers;
-import io.dropwizard.testing.junit.DropwizardAppRule;
-import io.federecio.dropwizard.swagger.TestConfiguration;
-import io.federecio.dropwizard.swagger.selenium.SeleniumTest;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
 
@@ -63,11 +65,27 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
         inputs.get(1).sendKeys("Bearer " + token);
         final List<WebElement> buttons = driver
                 .findElements(By.className("auth_submit__button"));
-        buttons.get(1).click();
+        buttons.get(2).click();
 
         clickOnTryOut("auth_protectedDummyEndpoint_content");
         assertResponseCodeIs("auth_protectedDummyEndpoint_content", 200);
         assertResponseBodyIs("auth_protectedDummyEndpoint_content", token);
+    }
+
+    @Test
+    public void testOauth2ResourceWithAuthorizationShouldReturn200()
+        throws Exception {
+        driver.get(getSwaggerUrl() + "#!/auth/protectedWithOAuth2DummyEndpoint");
+        driver.manage().timeouts().implicitlyWait(WAIT_IN_SECONDS, TimeUnit.SECONDS);
+
+        driver.findElement(By.className("authorize__btn")).click();
+        final List<WebElement> buttons = driver
+            .findElements(By.className("auth_submit__button"));
+        buttons.get(0).click();
+
+        clickOnTryOut("auth_protectedWithOAuth2DummyEndpoint_content");
+        assertResponseCodeIs("auth_protectedWithOAuth2DummyEndpoint_content", 200);
+        assertResponseBodyIs("auth_protectedWithOAuth2DummyEndpoint_content", OAuth2Resource.MOCKED_OAUTH2_TOKEN);
     }
 
     @Test
@@ -85,7 +103,7 @@ public class DefaultServerWithAuthenticationSeleniumTest extends SeleniumTest {
         inputs.get(0).sendKeys(apiKey);
         final List<WebElement> buttons = driver
                 .findElements(By.className("auth_submit__button"));
-        buttons.get(0).click();
+        buttons.get(1).click();
 
         clickOnTryOut("auth_apiKeyDummyEndpoint_content");
         assertResponseCodeIs("auth_apiKeyDummyEndpoint_content", 200);
