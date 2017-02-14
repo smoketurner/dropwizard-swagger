@@ -19,6 +19,7 @@ import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.PrincipalImpl;
 import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.sample.OAuth2Resource;
 import io.federecio.dropwizard.swagger.TestApplication;
 import io.federecio.dropwizard.swagger.TestConfiguration;
 
@@ -28,6 +29,7 @@ public class TestAuthApplication extends TestApplication {
     public void run(TestConfiguration configuration, Environment environment) throws Exception {
         super.run(configuration, environment);
         environment.jersey().register(new AuthResource());
+        environment.jersey().register(new OAuth2Resource());
 
         environment.jersey().register(new AuthDynamicFeature(
                 new OAuthCredentialAuthFilter.Builder<PrincipalImpl>()

@@ -47,5 +47,6 @@ public class SampleApplication extends Application<SampleConfiguration> {
 
         // resources
         environment.jersey().register(new SampleResource());
+        environment.jersey().register(new OAuth2Resource());
     }
 }

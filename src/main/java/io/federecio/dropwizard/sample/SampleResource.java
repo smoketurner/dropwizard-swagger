@@ -25,8 +25,7 @@ import io.swagger.annotations.SwaggerDefinition;
     @OAuth2Definition(
         flow = OAuth2Definition.Flow.IMPLICIT,
         key = "oauth2",
-        authorizationUrl = "http://brentertainment.com/oauth2/lockdin/authorize",
-        tokenUrl = "http://brentertainment.com/oauth2/lockdin/token")}))
+        authorizationUrl = "/oauth2/auth")}))
 public class SampleResource {
 
     @GET

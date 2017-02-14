@@ -15,6 +15,7 @@
 package io.federecio.dropwizard.swagger.selenium.auth;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -26,6 +27,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.OAuth2Definition;
 import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
 
@@ -33,7 +36,9 @@ import io.swagger.annotations.SwaggerDefinition;
 @Path("/auth.json")
 @SwaggerDefinition(securityDefinition = @SecurityDefinition(apiKeyAuthDefinitions = {
         @ApiKeyAuthDefinition(in = ApiKeyAuthDefinition.ApiKeyLocation.QUERY, key = "query_api_key", name = "api_key"),
-        @ApiKeyAuthDefinition(in = ApiKeyAuthDefinition.ApiKeyLocation.HEADER, key = "header_api_key", name = "Authorization") }))
+        @ApiKeyAuthDefinition(in = ApiKeyAuthDefinition.ApiKeyLocation.HEADER, key = "header_api_key", name = "Authorization") },
+    oAuth2Definitions = {@OAuth2Definition(flow = OAuth2Definition.Flow.IMPLICIT, key = "oauth2", authorizationUrl = "/oauth2/auth") })
+)
 public class AuthResource {
     public static final String OPERATION_DESCRIPTION = "This is a protected dummy endpoint for test";
 
@@ -43,6 +48,14 @@ public class AuthResource {
     public Response protectedDummyEndpoint(
             @ApiParam(hidden = true) @Auth PrincipalImpl user) {
         return Response.ok(user.getName()).build();
+    }
+
+    @GET
+    @Path("oauth2")
+    @ApiOperation(value = OPERATION_DESCRIPTION, authorizations = @Authorization("oauth2"))
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response protectedWithOAuth2DummyEndpoint(@HeaderParam("Authorization") String bearer) {
+        return Response.ok(bearer).build();
     }
 
     @GET
