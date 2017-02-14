@@ -350,6 +350,11 @@
                         <format>xml</format>
                     </formats>
                     <aggregate>true</aggregate>
+                    <instrumentation>
+                        <ignores>
+                            <ignore>io.federecio.dropwizard.sample.*</ignore>
+                        </ignores>
+                    </instrumentation>
                 </configuration>
             </plugin>
             <plugin>
