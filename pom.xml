@@ -354,6 +354,9 @@
                         <ignores>
                             <ignore>io.federecio.dropwizard.sample.*</ignore>
                         </ignores>
+                        <excludes>
+                            <exclude>io/federecio/dropwizard/sample/*.class</exclude>
+                        </excludes>
                     </instrumentation>
                 </configuration>
             </plugin>
