@@ -35,21 +35,23 @@ public class SwaggerView extends View {
     private final SwaggerOAuth2Configuration oauth2Configuration;
 
     public SwaggerView(@Nonnull final String contextRoot,
-                       @Nonnull final String urlPattern,
-                       @Nonnull SwaggerViewConfiguration viewConfiguration,
-                       @Nonnull SwaggerOAuth2Configuration oauth2Configuration) {
+            @Nonnull final String urlPattern,
+            @Nonnull SwaggerViewConfiguration viewConfiguration,
+            @Nonnull SwaggerOAuth2Configuration oauth2Configuration) {
         super(viewConfiguration.getTemplateUrl(), StandardCharsets.UTF_8);
 
         String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
 
-        if (!contextRootPrefix.isEmpty()) { //swagger-static should be found on the root context
+        // swagger-static should be found on the root context
+        if (!contextRootPrefix.isEmpty()) {
             swaggerAssetsPath = contextRootPrefix + SWAGGER_URI_PATH;
-        }
-        else {
-            swaggerAssetsPath = (urlPattern.equals("/") ? SWAGGER_URI_PATH : (urlPattern + SWAGGER_URI_PATH));
+        } else {
+            swaggerAssetsPath = (urlPattern.equals("/") ? SWAGGER_URI_PATH
+                    : (urlPattern + SWAGGER_URI_PATH));
         }
 
-        contextPath = urlPattern.equals("/") ? contextRootPrefix : (contextRootPrefix + urlPattern);
+        contextPath = urlPattern.equals("/") ? contextRootPrefix
+                : (contextRootPrefix + urlPattern);
 
         this.viewConfiguration = viewConfiguration;
         this.oauth2Configuration = oauth2Configuration;
@@ -100,7 +102,8 @@ public class SwaggerView extends View {
     }
 
     /**
-     * @return {@link SwaggerOAuth2Configuration} containing every properties to init oauth2
+     * @return {@link SwaggerOAuth2Configuration} containing every properties to
+     *         init oauth2
      */
     public SwaggerOAuth2Configuration getOauth2Configuration() {
         return oauth2Configuration;

@@ -27,16 +27,19 @@ public class SwaggerResource {
     private final String contextRoot;
     private final String urlPattern;
 
-    public SwaggerResource(String urlPattern, SwaggerViewConfiguration viewConfiguration,
-                           SwaggerOAuth2Configuration oAuth2Configuration) {
+    public SwaggerResource(String urlPattern,
+            SwaggerViewConfiguration viewConfiguration,
+            SwaggerOAuth2Configuration oAuth2Configuration) {
         this.urlPattern = urlPattern;
         this.viewConfiguration = viewConfiguration;
         this.oAuth2Configuration = oAuth2Configuration;
         this.contextRoot = "/";
     }
 
-    public SwaggerResource(String urlPattern, SwaggerViewConfiguration viewConfiguration,
-                           SwaggerOAuth2Configuration oAuth2Configuration, String contextRoot) {
+    public SwaggerResource(String urlPattern,
+            SwaggerViewConfiguration viewConfiguration,
+            SwaggerOAuth2Configuration oAuth2Configuration,
+            String contextRoot) {
         this.viewConfiguration = viewConfiguration;
         this.oAuth2Configuration = oAuth2Configuration;
         this.urlPattern = urlPattern;
@@ -45,6 +48,7 @@ public class SwaggerResource {
 
     @GET
     public SwaggerView get() {
-        return new SwaggerView(contextRoot, urlPattern, viewConfiguration, oAuth2Configuration);
+        return new SwaggerView(contextRoot, urlPattern, viewConfiguration,
+                oAuth2Configuration);
     }
 }

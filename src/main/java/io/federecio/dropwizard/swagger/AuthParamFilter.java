@@ -45,7 +45,7 @@ public class AuthParamFilter implements SwaggerSpecFilter {
             ApiDescription api, Map<String, List<String>> params,
             Map<String, String> cookies, Map<String, List<String>> headers) {
         String access = parameter.getAccess();
-        if (access != null && access.equals("internal"))
+        if (access != null && "internal".equals(access))
             return false;
         return true;
     }

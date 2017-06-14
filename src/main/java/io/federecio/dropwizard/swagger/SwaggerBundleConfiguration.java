@@ -197,7 +197,8 @@ public class SwaggerBundleConfiguration {
     }
 
     @JsonProperty("oauth2")
-    public void setSwaggerOAuth2Configuration(final SwaggerOAuth2Configuration swaggerOAuth2Configuration) {
+    public void setSwaggerOAuth2Configuration(
+            final SwaggerOAuth2Configuration swaggerOAuth2Configuration) {
         this.swaggerOAuth2Configuration = swaggerOAuth2Configuration;
     }
 

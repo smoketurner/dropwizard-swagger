@@ -1,15 +1,13 @@
 package io.federecio.dropwizard.sample;
 
+import static io.federecio.dropwizard.sample.OAuth2Resource.MOCKED_OAUTH2_TOKEN;
+import java.util.Optional;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;
 import io.dropwizard.auth.PrincipalImpl;
-import io.dropwizard.auth.basic.BasicCredentials;
 
-import java.util.Optional;
-
-import static io.federecio.dropwizard.sample.OAuth2Resource.MOCKED_OAUTH2_TOKEN;
-
-public class SampleOAuth2Authenticator implements Authenticator<String, PrincipalImpl> {
+public class SampleOAuth2Authenticator
+        implements Authenticator<String, PrincipalImpl> {
 
     @Override
     public Optional<PrincipalImpl> authenticate(String token)

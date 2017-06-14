@@ -35,9 +35,9 @@ public class DefaultServerWithContactTest extends DropwizardTest {
     @Test
     public void swaggerHasContactInfo() throws Exception {
         RestAssured.expect().statusCode(HttpStatus.OK_200)
-                .body(StringContains.containsString("\"name\" : \"test-contact-info\""),
-                      StringContains.containsString("\"email\" : \"test-contact-email@test.com\""),
-                      StringContains.containsString("\"url\" : \"test-url.contact.com\""))
+                .body(StringContains.containsString("\"name\":\"test-contact-info\""),
+                      StringContains.containsString("\"email\":\"test-contact-email@test.com\""),
+                      StringContains.containsString("\"url\":\"test-url.contact.com\""))
                 .when().get(Path.from(basePath, "swagger.json"));
     }
 }

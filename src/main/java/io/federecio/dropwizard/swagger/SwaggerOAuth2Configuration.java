@@ -14,16 +14,14 @@
  */
 package io.federecio.dropwizard.swagger;
 
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Maps;
-import io.swagger.jaxrs.config.BeanConfig;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import java.util.Map;
 
 /**
- * For the meaning of all these properties please refer to Swagger UI documentation
- * or {@see https://github.com/swagger-api/swagger-ui/blob/master/lib/swagger-oauth.js}
+ * For the meaning of all these properties please refer to Swagger UI
+ * documentation or
+ * {@see https://github.com/swagger-api/swagger-ui/blob/master/lib/swagger-oauth.js}
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SwaggerOAuth2Configuration {
@@ -80,7 +78,8 @@ public class SwaggerOAuth2Configuration {
         return additionalQueryStringParams;
     }
 
-    public void setAdditionalQueryStringParams(Map<String, String> additionalQueryStringParams) {
+    public void setAdditionalQueryStringParams(
+            Map<String, String> additionalQueryStringParams) {
         this.additionalQueryStringParams = additionalQueryStringParams;
     }
 }
