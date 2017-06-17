@@ -59,9 +59,9 @@ public abstract class SwaggerBundle<T extends Configuration>
                 configurationHelper.getSwaggerUriPath(), null, "swagger-assets")
                         .run(environment);
 
-        new AssetsBundle("/swagger-static/o2c.html",
-            configurationHelper.getJerseyRootPath() + "o2c.html", null, "swagger-oauth2-connect")
-            .run(environment);
+        new AssetsBundle("/swagger-static/oauth2-redirect.html",
+                configurationHelper.getOAuth2RedirectUriPath(), null, "swagger-oauth2-connect")
+                        .run(environment);
 
         swaggerBundleConfiguration.build(configurationHelper.getUrlPattern());
 

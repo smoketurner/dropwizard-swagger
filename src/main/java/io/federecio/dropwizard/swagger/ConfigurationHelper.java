@@ -96,6 +96,13 @@ public class ConfigurationHelper {
         return uriPathPrefix + "/swagger-static";
     }
 
+    public String getOAuth2RedirectUriPath() {
+        final String jerseyRootPath = getJerseyRootPath();
+        final String uriPathPrefix = jerseyRootPath.equals("/") ? ""
+            : jerseyRootPath;
+        return uriPathPrefix + "/oauth2-redirect.html";
+    }
+
     private String getApplicationContextPath() {
         final ServerFactory serverFactory = configuration.getServerFactory();
 

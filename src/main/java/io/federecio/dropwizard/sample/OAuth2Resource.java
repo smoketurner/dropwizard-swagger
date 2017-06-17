@@ -34,6 +34,7 @@ public class OAuth2Resource {
             @QueryParam("client_id") @DefaultValue("") String clientId,
             @QueryParam("client_secret") @DefaultValue("") String clientSecret,
             @QueryParam("scope") String scope,
+            @QueryParam("state") String state,
             @QueryParam("redirect_uri") String redirectUri,
             @QueryParam("realm") @DefaultValue("") String realm)
             throws URISyntaxException {
@@ -54,6 +55,7 @@ public class OAuth2Resource {
         }
 
         URI redirectWithAccessToken = UriBuilder.fromUri(redirectUri)
+                .queryParam("state", state)
                 .queryParam("access_token", MOCKED_OAUTH2_TOKEN).build();
         return Response.seeOther(redirectWithAccessToken).build();
     }
