@@ -12,15 +12,15 @@
   <style>
     html
     {
-        box-sizing: border-box;
-        overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
     }
     *,
     *:before,
     *:after
     {
-        box-sizing: inherit;
+      box-sizing: inherit;
     }
 
     body {
@@ -81,9 +81,10 @@ window.onload = function() {
     validatorUrl: null,
     </#if>
     dom_id: '#swagger-ui',
+    deepLinking: true,
     supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-    onComplete: function(swaggerApi, swaggerUi){
-      if(window.SwaggerTranslator) {
+    onComplete: function(swaggerApi, swaggerUi) {
+      if (window.SwaggerTranslator) {
         window.SwaggerTranslator.translate();
       }
     },
@@ -114,7 +115,7 @@ window.onload = function() {
     scopeSeparator: "${oauth2Configuration.scopeSeparator!" "}",
     additionalQueryStringParams: {
     <#list oauth2Configuration.additionalQueryStringParams?keys as additionalQueryStringParamKey>
-        "${additionalQueryStringParamKey}": "${oauth2Configuration.additionalQueryStringParams[additionalQueryStringParamKey]}"
+      "${additionalQueryStringParamKey}": "${oauth2Configuration.additionalQueryStringParams[additionalQueryStringParamKey]}"
     </#list>
     }
   });
