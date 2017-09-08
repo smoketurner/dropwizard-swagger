@@ -63,7 +63,6 @@
         <javadoc.doclint.none>-Xdoclint:none</javadoc.doclint.none>
         <jdk.version>1.8</jdk.version>
         <swagger.version>1.5.16</swagger.version>
-        <selenium.version>3.4.0</selenium.version>
     </properties>
 
     <ciManagement>
@@ -88,14 +87,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray</id>
-            <name>bintray</name>
-            <url>http://jcenter.bintray.com</url>
-        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -106,16 +97,6 @@
                 <version>${dropwizard.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-remote-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency> <!-- used by selenium-java -->
-                <groupId>xml-apis</groupId>
-                <artifactId>xml-apis</artifactId>
-                <version>1.4.01</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -172,10 +153,6 @@
             <artifactId>dropwizard-views</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-views-freemarker</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
         </dependency>
@@ -184,7 +161,6 @@
             <artifactId>swagger-jersey2-jaxrs</artifactId>
             <version>${swagger.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
@@ -195,38 +171,6 @@
             <artifactId>rest-assured</artifactId>
             <version>3.0.1</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-http</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-io</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-util</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpmime</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>commons-codec</groupId>
-                    <artifactId>commons-codec</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -245,36 +189,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*SeleniumTest.java</exclude>
-                    </excludes>
-                    <forkCount>1</forkCount>
-                    <reuseForks>false</reuseForks>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.20</version>
-                <configuration>
-                    <includes>
-                        <include>**/*SeleniumTest.java</include>
-                    </includes>
-                    <!-- need to run each Selenium test in its own jvm process
-                    otherwise swagger's static configuration ConfigFactory
-                    conflicts between tests -->
-                    <forkCount>1</forkCount>
-                    <reuseForks>false</reuseForks>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
