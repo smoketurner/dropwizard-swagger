@@ -190,7 +190,7 @@
                             <compilerArgs>
                                 <arg>-XepDisableWarningsInGeneratedCode</arg>
                                 <arg>-Xep:NullAway:ERROR</arg>
-                                <arg>-XepOpt:NullAway:AnnotatedPackages=com.smoketurner.dropwizard.riak</arg>
+                                <arg>-XepOpt:NullAway:AnnotatedPackages=io.federecio.dropwizard.swagger</arg>
                             </compilerArgs>
                         </configuration>
                         <dependencies>
