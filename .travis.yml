@@ -1,21 +1,33 @@
 sudo: false
 dist: trusty
 language: java
-jdk:
-  - oraclejdk8
+before_install:
+  - ulimit -c unlimited -S
+  - mvn -N io.takari:maven:wrapper
 after_success:
   - bash .travis_after_success.sh
 cache:
   directories:
     - $HOME/.m2
 
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+matrix:
+  include:
+    - os: linux
+      jdk: oraclejdk8
+      addons:
+        apt:
+          packages:
+            - oracle-java8-installer
+    - os: linux
+      jdk: oraclejdk9
+      addons:
+        apt:
+          packages:
+            - oracle-java9-installer
 
 env:
   global:
+    # CI_DEPLOY_USERNAME
     - secure: "o4HtCIE7LV5/L4h0ndVPyYjwRiPV6XJTr4fFJamjqhr1Rj3uPi795HMizcb1cmL/1c+S+MyVfDdpFULEf60urV2BO+d5JhuLfF1HKPAOCNmruKNiLDwYM0LknGwZHzz8Q+WTjqMqWJqSwmkRor8jTbH6om1ntKLIqC30HYkSSNnK+/gzlPZkn0XfOJp5xLvIkg/l4Je/JFijlhZ3Xnc4cDEcAsBnsUtOSV1YsweUJe2js0qPXYvft+wzz7nn0V61vxeCYq1IK6WSpoo6XduPwdUW2AALl3YoVuLWTiBkv8tSYLnJ4mNmjnW/PPyv5wKd0AXRN+YSIqaMG4xEDx0Vw7PbDLIVzLJpEPuWH6J9rGEh2lS1yeBl1DXUCs+5o88LMBm8IYeaKEGF4C9Stj/a8GrWiIGIPGz06ZX4WEvKsiXwYmozYE4FwMOvj6vMG31wdULnVP/wy9O97rZXkjbUE2rcNOYbhPFmiYFDtpuP9WMkvGmyF1eIsyWXqDKzzatjZaVlz4ne1q9TmQOqikiS0wipYwZLhssn2QXaPEJaUTkWqJYtfVa9P+Vq+N4eZzdecyWlJCfzhzBxj+RVu1vdBpGWGIeGgco51MO7QD5kSBo4pnH/jvhD6L9eAhKZTTNuQulhlapX6PBvr0fdOkGWxvv73rFRH5jtJ8v5/KZcoSs="
+    # CI_DEPLOY_PASSWORD
     - secure: "XNy3ReWsV7C1AW4bEUa2m6F1zAK/3amlN6X6R+x7vTbstP+rS6nxgs6w+PqJzXpXzZF3YcsKT30aM8U3iiXyzvIjUEA93/YBsPLD0e63KqtAC97sEFpowLbCRFz8X3RctgktU0Bmq3EshlINkh5N++hcqVWxcLHW829M6CeJNKu/A1WXRxW+8aTvD1LYhvBuBDBM+rOvuRRujyS6LN52jpzJSFUYcd7jqN1VTiLDwz+8hEKKyH8U5l7rORm5MbZRiuqH4b7VTJRk5QLJXu0Q1UlcmsDcKg8HmdOSQvcYp8GpJq9IKZmu5o9nqUo+IzrtDYudQKJtnH4e1C0A/ZOaQeM+342AyaoWV3n/R//yzOyYInavH4xMuiNo9b5FyLe+gJaZXfSKD62goEDXS9hdsQIirVFZ2+DjK7O1NHOUTN80lcIq8/meaFEb030HHcz0O2U1CNcRjqgSj1Ra1xNn+ATAHg+puS3LJb0xrtvo5QGp/6FF5XrvIn6DlnNYI+k4QigKiNoopsLBBydY2JbG3ynjSbdufHm726j/G4DUCg5z343Zu5EkfrQOcNnUNrisjT5zbPkKW9HtgMii6EKUmY64cJe7pBgGYS/MP6OMbpstYVxQgLRDAGS++QXFVzWfofM/tIIBLTNWTaz1mMeOKwezE+ckFgaWpTx3JKTUPT8="
-
