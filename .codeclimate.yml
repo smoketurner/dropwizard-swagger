@@ -4,7 +4,8 @@ engines:
     channel: "beta"
   checkstyle:
     enabled: true
-    config: checkstyle.xml
+    config:
+      file: "checkstyle.xml"
     channel: "beta"
 
 ratings:
@@ -16,4 +17,3 @@ exclude_paths:
 - "**.ttf"
 - "**.ico"
 - "**.js"
-
