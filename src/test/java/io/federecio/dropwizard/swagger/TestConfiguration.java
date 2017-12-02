@@ -23,5 +23,5 @@ import io.dropwizard.Configuration;
 public class TestConfiguration extends Configuration {
 
     @JsonProperty("swagger")
-    public SwaggerBundleConfiguration swaggerBundleConfiguration;
+    public SwaggerBundleConfiguration swaggerBundleConfiguration = new SwaggerBundleConfiguration();
 }

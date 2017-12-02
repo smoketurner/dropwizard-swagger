@@ -27,14 +27,16 @@ public class TestApplication extends Application<TestConfiguration> {
     public void initialize(Bootstrap<TestConfiguration> bootstrap) {
         bootstrap.addBundle(new SwaggerBundle<TestConfiguration>() {
             @Override
-            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(TestConfiguration configuration) {
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(
+                    TestConfiguration configuration) {
                 return configuration.swaggerBundleConfiguration;
             }
         });
     }
 
     @Override
-    public void run(TestConfiguration configuration, Environment environment) throws Exception {
+    public void run(TestConfiguration configuration, Environment environment)
+            throws Exception {
         environment.jersey().register(new TestResource());
     }
 }

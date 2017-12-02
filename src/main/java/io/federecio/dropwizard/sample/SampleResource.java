@@ -1,5 +1,9 @@
 package io.federecio.dropwizard.sample;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.auth.PrincipalImpl;
 import io.swagger.annotations.Api;
@@ -13,19 +17,11 @@ import io.swagger.annotations.OAuth2Definition;
 import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 @Api("/")
 @Path("/")
-@SwaggerDefinition(securityDefinition = @SecurityDefinition(basicAuthDefinions = {
+@SwaggerDefinition(securityDefinition = @SecurityDefinition(basicAuthDefinitions = {
         @BasicAuthDefinition(key = "basic") }, oAuth2Definitions = {
-    @OAuth2Definition(
-        flow = OAuth2Definition.Flow.IMPLICIT,
-        key = "oauth2",
-        authorizationUrl = "/oauth2/auth")}))
+                @OAuth2Definition(flow = OAuth2Definition.Flow.IMPLICIT, key = "oauth2", authorizationUrl = "/oauth2/auth") }))
 public class SampleResource {
 
     @GET
@@ -40,11 +36,13 @@ public class SampleResource {
     @GET
     @Path("/secret")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Secret", notes = "Returns secret",
-        authorizations = { @Authorization("basic"), @Authorization("oauth2") })
-    @ApiResponses(value = { @ApiResponse(code = 401, message = "Please enter basic credentials or use oauth2 authentication"),
-        @ApiResponse(code = 200, message = "secret") })
+    @ApiOperation(value = "Secret", notes = "Returns secret", authorizations = {
+            @Authorization("basic"), @Authorization("oauth2") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 401, message = "Please enter basic credentials or use oauth2 authentication"),
+            @ApiResponse(code = 200, message = "secret") })
     public Saying secret(@ApiParam(hidden = true) @Auth PrincipalImpl user) {
-        return new Saying(String.format("Hi %s! It's a secret message...", user.getName()));
+        return new Saying(String.format("Hi %s! It's a secret message...",
+                user.getName()));
     }
 }

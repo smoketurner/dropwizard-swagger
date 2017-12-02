@@ -37,7 +37,7 @@ public class SwaggerBundleConfiguration {
      * {@link io.swagger.annotations.Api} annotated resources
      */
     @NotEmpty
-    private String resourcePackage;
+    private String resourcePackage = "";
 
     @Nullable
     private String title;
