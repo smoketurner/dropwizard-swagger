@@ -52,6 +52,6 @@ public class TestApplicationWithApiSelectorDisabled extends Application<TestConf
 
   @Override
   public void run(TestConfiguration configuration, Environment environment) throws Exception {
-    environment.jersey().register(new TestResource());
+    environment.jersey().register(TestResource.class);
   }
 }

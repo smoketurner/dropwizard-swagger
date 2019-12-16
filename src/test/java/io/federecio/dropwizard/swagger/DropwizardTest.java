@@ -30,7 +30,7 @@ package io.federecio.dropwizard.swagger;
 import io.restassured.RestAssured;
 import org.eclipse.jetty.http.HttpStatus;
 import org.hamcrest.core.StringContains;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class DropwizardTest extends DropwizardCommonTest {
 

@@ -30,15 +30,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import io.dropwizard.testing.ResourceHelpers;
-import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.junit.ClassRule;
-import org.junit.Test;
+import io.dropwizard.testing.junit5.DropwizardAppExtension;
+import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(DropwizardExtensionsSupport.class)
 public class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
 
-  @ClassRule
-  public static final DropwizardAppRule<TestConfiguration> RULE =
-      new DropwizardAppRule<TestConfiguration>(
+  private static DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-default-disabled.yaml"));
 
   public DefaultServerWithNoSwaggerTest() {

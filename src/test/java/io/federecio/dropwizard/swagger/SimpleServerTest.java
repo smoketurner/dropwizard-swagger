@@ -28,14 +28,15 @@
 package io.federecio.dropwizard.swagger;
 
 import io.dropwizard.testing.ResourceHelpers;
-import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.junit.ClassRule;
+import io.dropwizard.testing.junit5.DropwizardAppExtension;
+import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(DropwizardExtensionsSupport.class)
 public class SimpleServerTest extends DropwizardTest {
 
-  @ClassRule
-  public static final DropwizardAppRule<TestConfiguration> RULE =
-      new DropwizardAppRule<TestConfiguration>(
+  private static DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-simple.yaml"));
 
   public SimpleServerTest() {

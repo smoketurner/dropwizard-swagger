@@ -37,7 +37,7 @@ import java.util.List;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class DropwizardCommonTest {
 

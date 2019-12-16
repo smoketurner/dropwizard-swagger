@@ -61,6 +61,6 @@ public class TestApplicationWithPathSetProgramatically extends Application<TestC
   @Override
   public void run(TestConfiguration configuration, final Environment environment) throws Exception {
     ((DefaultServerFactory) configuration.getServerFactory()).setJerseyRootPath(BASE_PATH + "/*");
-    environment.jersey().register(new TestResource());
+    environment.jersey().register(TestResource.class);
   }
 }
