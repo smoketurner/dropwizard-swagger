@@ -35,7 +35,7 @@ import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.models.Contact;
 import java.util.Arrays;
 import javax.annotation.Nullable;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * For the meaning of all these properties please refer to Swagger documentation or {@link
