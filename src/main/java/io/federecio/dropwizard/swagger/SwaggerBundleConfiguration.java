@@ -70,6 +70,8 @@ public class SwaggerBundleConfiguration {
 
   @Nullable private String licenseUrl;
 
+  @Nullable private String customJavascript;
+
   private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
   private SwaggerOAuth2Configuration swaggerOAuth2Configuration = new SwaggerOAuth2Configuration();
   private boolean prettyPrint = true;
@@ -292,6 +294,17 @@ public class SwaggerBundleConfiguration {
   @JsonProperty
   public void setIncludeSwaggerResource(final boolean include) {
     this.includeSwaggerResource = include;
+  }
+
+  @Nullable
+  @JsonProperty
+  public String getCustomJavascript() {
+    return customJavascript;
+  }
+
+  @JsonProperty
+  public void setCustomJavascript(@Nullable String customJavascript) {
+    this.customJavascript = customJavascript;
   }
 
   @JsonIgnore

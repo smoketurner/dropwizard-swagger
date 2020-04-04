@@ -91,7 +91,8 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
                   configurationHelper.getUrlPattern(),
                   swaggerBundleConfiguration.getSwaggerViewConfiguration(),
                   swaggerBundleConfiguration.getSwaggerOAuth2Configuration(),
-                  swaggerBundleConfiguration.getContextRoot()));
+                  swaggerBundleConfiguration.getContextRoot(),
+                  swaggerBundleConfiguration.getCustomJavascript()));
     }
   }
 

@@ -46,11 +46,14 @@ public class SwaggerView extends View {
   private final SwaggerViewConfiguration viewConfiguration;
   private final SwaggerOAuth2Configuration oauth2Configuration;
 
+  private final String customJavascriptPath;
+
   public SwaggerView(
       final String contextRoot,
       final String urlPattern,
       final SwaggerViewConfiguration viewConfiguration,
-      final SwaggerOAuth2Configuration oauth2Configuration) {
+      final SwaggerOAuth2Configuration oauth2Configuration,
+      final String customJavascriptPath) {
     super(viewConfiguration.getTemplateUrl(), StandardCharsets.UTF_8);
 
     String contextRootPrefix = "/".equals(contextRoot) ? "" : contextRoot;
@@ -67,6 +70,8 @@ public class SwaggerView extends View {
 
     this.viewConfiguration = viewConfiguration;
     this.oauth2Configuration = oauth2Configuration;
+
+    this.customJavascriptPath = customJavascriptPath;
   }
 
   /**
@@ -106,6 +111,16 @@ public class SwaggerView extends View {
   @Nullable
   public String getValidatorUrl() {
     return viewConfiguration.getValidatorUrl();
+  }
+
+  /**
+   * Returns the path to custom javascript
+   *
+   * @return String
+   */
+  @Nullable
+  public String getCustomJavascriptPath() {
+    return customJavascriptPath;
   }
 
   /**

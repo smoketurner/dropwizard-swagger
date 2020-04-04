@@ -33,7 +33,9 @@
 
   <body>
     <div id="swagger-ui"></div>
-
+    <#if customJavascriptPath ??>
+        <script src="${customJavascriptPath}"> </script>
+    </#if>
     <script src="${swaggerAssetsPath}/swagger-ui-bundle.js"> </script>
     <script src="${swaggerAssetsPath}/swagger-ui-standalone-preset.js"> </script>
     <script>
@@ -64,7 +66,12 @@
           SwaggerUIBundle.plugins.DownloadUrl
         ],
         oauth2RedirectUrl: window.location.protocol + "//" + window.location.host + "${contextPath}/oauth2-redirect.html",
-        layout: "StandaloneLayout"
+        layout: "StandaloneLayout",
+        <#if requestInterceptor?? && requestInterceptor?is_method>
+        requestInterceptor: "${requestInterceptor}"
+        <#else>
+        requestInterceptor: null
+        </#if>
       });
 
       ui.initOAuth({

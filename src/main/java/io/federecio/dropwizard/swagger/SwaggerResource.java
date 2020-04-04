@@ -28,6 +28,7 @@
 package io.federecio.dropwizard.swagger;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -39,6 +40,7 @@ public class SwaggerResource {
   private final SwaggerOAuth2Configuration oAuth2Configuration;
   private final String contextRoot;
   private final String urlPattern;
+  private final String customJavascriptPath;
 
   public SwaggerResource(
       String urlPattern,
@@ -48,6 +50,7 @@ public class SwaggerResource {
     this.viewConfiguration = viewConfiguration;
     this.oAuth2Configuration = oAuth2Configuration;
     this.contextRoot = "/";
+    this.customJavascriptPath = null;
   }
 
   public SwaggerResource(
@@ -59,10 +62,26 @@ public class SwaggerResource {
     this.oAuth2Configuration = oAuth2Configuration;
     this.urlPattern = urlPattern;
     this.contextRoot = contextRoot;
+    this.customJavascriptPath = null;
+  }
+
+  public SwaggerResource(
+      String urlPattern,
+      SwaggerViewConfiguration viewConfiguration,
+      SwaggerOAuth2Configuration oAuth2Configuration,
+      String contextRoot,
+      String customJavascriptPath) {
+    this.viewConfiguration = viewConfiguration;
+    this.oAuth2Configuration = oAuth2Configuration;
+    this.urlPattern = urlPattern;
+    this.contextRoot = contextRoot;
+    this.customJavascriptPath = customJavascriptPath;
   }
 
   @GET
-  public SwaggerView get() {
-    return new SwaggerView(contextRoot, urlPattern, viewConfiguration, oAuth2Configuration);
+  public SwaggerView get(@HeaderParam("x-custom-header") String customHeader) {
+    String v = customHeader;
+    return new SwaggerView(
+        contextRoot, urlPattern, viewConfiguration, oAuth2Configuration, customJavascriptPath);
   }
 }
