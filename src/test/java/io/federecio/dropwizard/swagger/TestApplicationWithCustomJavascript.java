@@ -55,5 +55,11 @@ public class TestApplicationWithCustomJavascript extends Application<TestConfigu
   @Override
   public void run(TestConfiguration configuration, Environment environment) throws Exception {
     environment.jersey().register(TestResource.class);
+    new AssetsBundle(
+      "/myassests/customJavascript.js",
+      "/customJavascript.js",
+      null,
+      "")
+      .run(configuration, environment);
   }
 }
