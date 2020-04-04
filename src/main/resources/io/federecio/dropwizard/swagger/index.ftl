@@ -34,7 +34,7 @@
   <body>
     <div id="swagger-ui"></div>
     <#if customJavascriptPath ??>
-        <script src="${customJavascriptPath}"> </script>
+    <script src="${customJavascriptPath}"> </script>
     </#if>
     <script src="${swaggerAssetsPath}/swagger-ui-bundle.js"> </script>
     <script src="${swaggerAssetsPath}/swagger-ui-standalone-preset.js"> </script>

@@ -79,8 +79,7 @@ public class SwaggerResource {
   }
 
   @GET
-  public SwaggerView get(@HeaderParam("x-custom-header") String customHeader) {
-    String v = customHeader;
+  public SwaggerView get() {
     return new SwaggerView(
         contextRoot, urlPattern, viewConfiguration, oAuth2Configuration, customJavascriptPath);
   }
