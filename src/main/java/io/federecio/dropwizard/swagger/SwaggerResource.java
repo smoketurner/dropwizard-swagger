@@ -28,7 +28,6 @@
 package io.federecio.dropwizard.swagger;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -80,7 +79,6 @@ public class SwaggerResource {
 
   @GET
   public SwaggerView get() {
-    return new SwaggerView(
-        contextRoot, urlPattern, viewConfiguration, oAuth2Configuration, customJavascriptPath);
+    return new SwaggerView(contextRoot, urlPattern, viewConfiguration, oAuth2Configuration, customJavascriptPath);
   }
 }

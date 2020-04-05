@@ -29,12 +29,12 @@ package io.federecio.dropwizard.swagger;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.Optional;
+
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 /** @author Federico Recio */
 @Path("/test.json")
