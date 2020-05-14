@@ -315,7 +315,7 @@ public class SwaggerBundleConfiguration {
               + " for Swagger to correctly detect annotated resources");
     }
 
-    final BeanConfig config = new BeanConfig();
+    final BeanConfig config = new FastBeanConfig();
     config.setTitle(title);
     config.setVersion(version);
     config.setDescription(description);
