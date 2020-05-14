@@ -43,10 +43,14 @@ public class FastBeanConfig extends BeanConfig{
 
         config.setScanners(new ResourcesScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
         
+        /*
+         * set input filter: speed up scanning and remove warnings on fat jars
+         */
         if (!allowAllPackages) {
         	config.setInputsFilter(new FilterBuilder().includePackage(
         			acceptablePackages.toArray(new String[acceptablePackages.size()])));
         }
+        
 
         final Reflections reflections = new Reflections(config);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(javax.ws.rs.Path.class);
