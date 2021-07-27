@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright © 2014 Federico Recio (N/A)
+    Copyright © 2019 Smoke Turner, LLC (github@smoketurner.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,51 +16,67 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.smoketurner.dropwizard</groupId>
-        <artifactId>dropwizard-pom</artifactId>
-        <version>2.0.16-1</version>
-    </parent>
 
-    <groupId>com.smoketurner</groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--    <parent>-->
+    <!--        <groupId>com.smoketurner.dropwizard</groupId>-->
+    <!--        <artifactId>dropwizard-pom</artifactId>-->
+    <!--        <version>2.0.16-1</version>-->
+    <!--    </parent>-->
+
+    <groupId>io.skai</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>2.0.12-2-SNAPSHOT</version>
+    <version>2.0.${env.BUILD_NUMBER}</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
-    <url>https://github.com/smoketurner/dropwizard-swagger/</url>
+    <url>https://github.com/kenshoo/dropwizard-swagger/</url>
 
-    <developers>
-        <developer>
-            <name>Federico Recio</name>
-            <url>http://about.me/federecio</url>
-        </developer>
-        <developer>
-            <id>jplock</id>
-            <name>Justin Plock</name>
-            <email>jplock@smoketurner.com</email>
-            <timezone>America/New_York</timezone>
-        </developer>
-    </developers>
-
-    <inceptionYear>2014</inceptionYear>
     <scm>
-        <connection>scm:git:git://github.com:smoketurner/dropwizard-swagger.git</connection>
-        <developerConnection>scm:git:git@github.com:smoketurner/dropwizard-swagger.git</developerConnection>
-        <url>http://github.com/smoketurner/dropwizard-swagger</url>
+        <connection>scm:git:git://github.com:kenshoo/dropwizard-swagger.git</connection>
+        <url>http://github.com/kenshoo/dropwizard-swagger</url>
         <tag>HEAD</tag>
     </scm>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.optimize>false</maven.compiler.optimize>
+        <dropwizard.version>2.0.15</dropwizard.version>
+        <google-java-format.version>1.9</google-java-format.version>
+        <jmh.version>1.26</jmh.version>
+    </properties>
+
     <dependencyManagement>
-      <dependencies>
-        <dependency>
-          <groupId>org.glassfish.jersey.containers</groupId>
-          <artifactId>jersey-container-servlet-core</artifactId>
-          <version>2.32</version>
-        </dependency>
-      </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey.containers</groupId>
+                <artifactId>jersey-container-servlet-core</artifactId>
+                <version>2.32</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-dependencies</artifactId>
+                <version>${dropwizard.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.0-jre</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -119,20 +135,260 @@
             <version>4.3.3</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-testing</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.18.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.6.28</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>jdk9</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>11</maven.compiler.release>
+                <maven.compiler.source>11</maven.compiler.source>
+                <maven.compiler.target>11</maven.compiler.target>
+                <argLine>${surefire.argLine} --illegal-access=deny --add-opens java.base/java.net=ALL-UNNAMED</argLine>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <maven.compiler.optimize>true</maven.compiler.optimize>
+            </properties>
+            <build>
+                <plugins>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify</goal>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
                 <configuration>
-                    <properties>
-                        <owner>Federico Recio</owner>
-                        <email>N/A</email>
-                    </properties>
-                 </configuration>
-             </plugin>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <additionalOptions>
+                        <option>-html5</option>
+                    </additionalOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>false</failOnWarning>
+                            <ignoredDependencies>
+                                <ignoredDependency>com.google.auto.value:auto-value</ignoredDependency>
+                                <ignoredDependency>com.google.code.findbugs:jsr305</ignoredDependency>
+                                <ignoredDependency>org.mockito:mockito-core</ignoredDependency>
+                                <ignoredDependency>org.junit.jupiter:junit-jupiter</ignoredDependency>
+                                <ignoredDependency>org.junit.jupiter:junit-jupiter-api</ignoredDependency>
+                                <ignoredDependency>org.junit.jupiter:junit-jupiter-engine</ignoredDependency>
+                                <ignoredDependency>org.junit.jupiter:junit-jupiter-params</ignoredDependency>
+                                <ignoredDependency>org.openjdk.jmh:jmh-core</ignoredDependency>
+                                <ignoredDependency>org.openjdk.jmh:jmh-generator-annprocess</ignoredDependency>
+                            </ignoredDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <fail>false</fail>
+                            <rules>
+                                <dependencyConvergence />
+                                <requireFilesExist>
+                                    <files>
+                                        <file>LICENSE</file>
+                                    </files>
+                                </requireFilesExist>
+                                <requireFileChecksum>
+                                    <file>LICENSE</file>
+                                    <checksum>cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30</checksum>
+                                    <type>sha256</type>
+                                </requireFileChecksum>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.coveo</groupId>
+                <artifactId>fmt-maven-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.googlejavaformat</groupId>
+                        <artifactId>google-java-format</artifactId>
+                        <version>${google-java-format.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.1.4</version>
+                <configuration>
+                    <effort>max</effort>
+                    <excludeFilterFile>spotbugs.xml</excludeFilterFile>
+                    <nested>false</nested>
+                    <threshold>low</threshold>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
