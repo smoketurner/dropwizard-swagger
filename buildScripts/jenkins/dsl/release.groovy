@@ -54,6 +54,7 @@ job("${NAME}-release") {
         shell("""
             rm ~/.m2/settings.xml || true
             ulimit -c unlimited -S
+            sudo yum install maven
             mvn -N io.takari:maven:wrapper
             ./mvnw clean install
             ./mvnw -B cobertura:cobertura coveralls:report
