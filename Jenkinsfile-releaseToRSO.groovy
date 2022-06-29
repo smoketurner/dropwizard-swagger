@@ -18,7 +18,6 @@
  */
 stagingWorkflow {
     gitHubRepoPath = 'sonatype/dropwizard-swagger'
-    channelToNotify = 'data-identity'
     sonarScan=false
     jdk='OpenJDK 11.0.0'
     licenseCheck=false
