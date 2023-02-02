@@ -4,8 +4,11 @@
  * "Sonatype" is a trademark of Sonatype, Inc.
  */
 
-@Library(['private-pipeline-library']) _
-
+@Library([
+    'private-pipeline-library',
+    'jenkins-shared',
+    'pipeline-jenkins-common',
+]) _
 /**
  * GitHub Pull Request builder.
  *
@@ -19,6 +22,7 @@
 stagingWorkflow {
     gitHubRepoPath = 'sonatype/dropwizard-swagger'
     sonarScan=false
-    jdk='OpenJDK 11.0.0'
+    jdk='OpenJDK 11'
     licenseCheck=false
+    channelToNotify = 'data-identity-jenkins'
 }

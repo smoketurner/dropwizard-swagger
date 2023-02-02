@@ -4,8 +4,11 @@
  * "Sonatype" is a trademark of Sonatype, Inc.
  */
 
-@Library(['jenkins-shared'])
-@Library(['private-pipeline-library']) _
+@Library([
+    'pipeline-jenkins-common',
+    'jenkins-shared',
+    'private-pipeline-library',
+]) _
 
 /**
  * GitHub Pull Request builder.
@@ -20,6 +23,6 @@
 prWorkflow {
     gitHubRepoPath = 'sonatype/dropwizard-swagger'
     sonarScan=false
-    jdk='OpenJDK 11.0.0'
+    jdk='OpenJDK 11'
     licenseCheck=false
 }
