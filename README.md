@@ -97,6 +97,7 @@ A note on Swagger 2
 Host and port do not seem to be needed for Swagger 2 to work properly as it uses relative URLs. At the moment I haven't run through all the scenarios so some adjustments might be needed, please open a bug if you encounter any problems.
 
 
+
 Contributors
 ------------
 
