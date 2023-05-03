@@ -36,9 +36,9 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import javax.validation.constraints.NotEmpty;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
