@@ -92,7 +92,7 @@
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-jersey2-jaxrs</artifactId>
-            <version>1.6.2</version>
+            <version>1.6.9</version>
             <!-- Causes runtime issues with jakarta.validation:validation-api in dropwizard-core -->
             <exclusions>
                 <exclusion>
