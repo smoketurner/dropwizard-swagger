@@ -7,6 +7,7 @@
 @Library([
     'private-pipeline-library',
     'jenkins-shared',
+    'ci-pipeline-library',
     'pipeline-jenkins-common',
 ]) _
 /**
