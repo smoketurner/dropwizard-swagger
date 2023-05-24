@@ -5,10 +5,9 @@
  */
 
 @Library([
-    'private-pipeline-library',
-    'jenkins-shared',
-    'ci-pipeline-library',
     'pipeline-jenkins-common',
+    'jenkins-shared',
+    'private-pipeline-library',
 ]) _
 /**
  * GitHub Pull Request builder.
@@ -20,10 +19,8 @@
  * We're using a style from this example, to get code reuse across scheduled-services:
  * https://jenkins.io/doc/book/pipeline/shared-libraries/#defining-a-more-structured-dsl
  */
-stagingWorkflow {
+commonBuild {
     gitHubRepoPath = 'sonatype/dropwizard-swagger'
-    sonarScan=false
+    release = true
     jdk='OpenJDK 11'
-    licenseCheck=false
-    channelToNotify = 'data-identity-jenkins'
 }

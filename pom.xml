@@ -19,18 +19,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.smoketurner.dropwizard</groupId>
-        <artifactId>dropwizard-pom</artifactId>
-        <version>2.0.16-1</version>
+        <groupId>com.sonatype.data.commons</groupId>
+        <artifactId>parent</artifactId>
+        <version>42</version>
+        <relativePath />
     </parent>
 
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>2.0.12-2-sonatype-fork-6</version>
+    <version>2.0.12-2-sonatype-fork-9-SNAPSHOT</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
-    <url>https://github.com/smoketurner/dropwizard-swagger/</url>
+    <url>https://github.com/sonatype/dropwizard-swagger/</url>
 
     <developers>
         <developer>
@@ -47,11 +48,15 @@
 
     <inceptionYear>2014</inceptionYear>
     <scm>
-        <connection>scm:git:git://github.com:smoketurner/dropwizard-swagger.git</connection>
-        <developerConnection>scm:git:git@github.com:smoketurner/dropwizard-swagger.git</developerConnection>
-        <url>http://github.com/smoketurner/dropwizard-swagger</url>
+        <connection>scm:git:https://github.com/sonatype/dropwizard-swagger.git</connection>
+        <developerConnection>scm:git:https://github.com/sonatype/dropwizard-swagger.git</developerConnection>
+        <url>https://github.com/sonatype/dropwizard-swagger</url>
         <tag>HEAD</tag>
     </scm>
+
+    <properties>
+        <dropwizard.version>2.0.15</dropwizard.version>
+    </properties>
 
     <dependencyManagement>
       <dependencies>
@@ -67,22 +72,27 @@
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-auth</artifactId>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-assets</artifactId>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views</artifactId>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views-freemarker</artifactId>
+            <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
@@ -118,6 +128,30 @@
             <artifactId>rest-assured</artifactId>
             <version>4.3.2</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-testing</artifactId>
+            <version>${dropwizard.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -127,10 +161,24 @@
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <configuration>
+                    <!-- mix of headers: sonatype and original -->
+                    <skip>true</skip>
                     <properties>
                         <owner>Federico Recio</owner>
                         <email>N/A</email>
                     </properties>
+                 </configuration>
+             </plugin>
+             <plugin>
+                 <groupId>org.sonatype.plugins</groupId>
+                 <artifactId>nexus-staging-maven-plugin</artifactId>
+                 <version>1.6.7</version>
+                 <extensions>true</extensions>
+                 <configuration>
+                     <serverId>sonatype-nexus</serverId>
+                     <nexusUrl>${private.nexusUrl}</nexusUrl>
+                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                     <stagingProfileId>628a979b241258</stagingProfileId>
                  </configuration>
              </plugin>
         </plugins>
