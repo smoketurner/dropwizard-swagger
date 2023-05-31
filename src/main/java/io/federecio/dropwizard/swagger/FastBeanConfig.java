@@ -59,11 +59,9 @@ public class FastBeanConfig extends BeanConfig {
      * set input filter: speed up scanning and remove warnings on fat jars
      */
     if (!allowAllPackages) {
-      final FilterBuilder fb = new FilterBuilder();
-      for (final String p : acceptablePackages) {
-        fb.includePackage(p);
-      }
-      config.setInputsFilter(fb);
+      config.setInputsFilter(
+          new FilterBuilder()
+              .includePackage(acceptablePackages.toArray(new String[acceptablePackages.size()])));
     }
 
     final Reflections reflections = new Reflections(config);
