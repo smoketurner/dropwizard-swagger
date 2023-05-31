@@ -27,7 +27,7 @@
 
     <groupId>com.smoketurner</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>2.0.12-2-sonatype-fork-10-SNAPSHOT</version>
+    <version>2.0.12-2-sonatype-fork-10</version>
 
     <name>Dropwizard Swagger support</name>
     <description>A simple way to document your REST APIs in DropWizard using Swagger</description>
@@ -51,7 +51,7 @@
         <connection>scm:git:https://github.com/sonatype/dropwizard-swagger.git</connection>
         <developerConnection>scm:git:https://github.com/sonatype/dropwizard-swagger.git</developerConnection>
         <url>https://github.com/sonatype/dropwizard-swagger</url>
-        <tag>HEAD</tag>
+        <tag>dropwizard-swagger-2.0.12-2-sonatype-fork-10</tag>
     </scm>
 
     <properties>
