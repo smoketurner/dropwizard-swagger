@@ -21,7 +21,7 @@
     <parent>
         <groupId>com.sonatype.data.commons</groupId>
         <artifactId>parent</artifactId>
-        <version>42</version>
+        <version>50</version>
         <relativePath />
     </parent>
 
@@ -167,18 +167,6 @@
                         <owner>Federico Recio</owner>
                         <email>N/A</email>
                     </properties>
-                 </configuration>
-             </plugin>
-             <plugin>
-                 <groupId>org.sonatype.plugins</groupId>
-                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                 <version>1.6.7</version>
-                 <extensions>true</extensions>
-                 <configuration>
-                     <serverId>sonatype-nexus</serverId>
-                     <nexusUrl>${private.nexusUrl}</nexusUrl>
-                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                     <stagingProfileId>628a979b241258</stagingProfileId>
                  </configuration>
              </plugin>
         </plugins>
