@@ -30,7 +30,7 @@
 
     <properties>
         <jersey.version>3.0.10</jersey.version>
-        <swagger.version>2.2.9</swagger.version>
+        <swagger.version>2.2.20</swagger.version>
     </properties>
 
     <name>Dropwizard Swagger support</name>
