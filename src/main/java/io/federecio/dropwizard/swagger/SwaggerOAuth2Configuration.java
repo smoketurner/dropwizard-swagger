@@ -46,6 +46,8 @@ public class SwaggerOAuth2Configuration {
 
   @Nullable private String scopeSeparator;
 
+  @Nullable private boolean usePkceWithAuthorizationCodeGrant;
+
   private Map<String, String> additionalQueryStringParams = Maps.newHashMap();
 
   @Nullable
@@ -91,6 +93,15 @@ public class SwaggerOAuth2Configuration {
 
   public void setScopeSeparator(@Nullable String scopeSeparator) {
     this.scopeSeparator = scopeSeparator;
+  }
+
+  @Nullable
+  public boolean isUsePkceWithAuthorizationCodeGrant() {
+    return usePkceWithAuthorizationCodeGrant;
+  }
+
+  public void setUsePkceWithAuthorizationCodeGrant(@Nullable boolean usePkceWithAuthorizationCodeGrant) {
+    this.usePkceWithAuthorizationCodeGrant = usePkceWithAuthorizationCodeGrant;
   }
 
   public Map<String, String> getAdditionalQueryStringParams() {

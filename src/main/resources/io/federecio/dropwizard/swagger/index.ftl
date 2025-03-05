@@ -76,6 +76,7 @@
         realm: "${oauth2Configuration.realm!"your-realms"}",
         appName: "${oauth2Configuration.appName!"your-app-name"}",
         scopeSeparator: "${oauth2Configuration.scopeSeparator!" "}",
+        usePkceWithAuthorizationCodeGrant: ${oauth2Configuration.usePkceWithAuthorizationCodeGrant?c},
         additionalQueryStringParams: {
         <#list oauth2Configuration.additionalQueryStringParams?keys as additionalQueryStringParamKey>
           "${additionalQueryStringParamKey}": "${oauth2Configuration.additionalQueryStringParams[additionalQueryStringParamKey]}"
